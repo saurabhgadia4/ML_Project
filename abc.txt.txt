@@ -1,3 +1,0 @@
-name,surname,age
-saurabh,gadia,23
-mansee, gadia,17
