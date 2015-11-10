@@ -1,4 +1,4 @@
-DATA_PATH = 'C:\Users\saura\Desktop\mlproject\data'
+DATA_PATH = 'data\\'
 TEST_FILE = 'test.csv'
 TRAIN_FILE = 'train.csv'
 TRAIN_TRIAL_FILE = 'trial_train.csv'
