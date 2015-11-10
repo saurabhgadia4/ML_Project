@@ -1,8 +1,8 @@
 DATA_PATH = 'data\\'
 TEST_FILE = 'test.csv'
 TRAIN_FILE = 'train.csv'
-TRAIN_TRIAL_FILE = 'trial_train.csv'
-TRIAL_FILE = 'trial1.csv'
+#TRAIN_TRIAL_FILE = 'trial_train.csv'
+#TRIAL_FILE = 'trial1.csv'
 
 #To extract the #col from actual column name eg. 'Ref'->3 
 #input = u'Ref'

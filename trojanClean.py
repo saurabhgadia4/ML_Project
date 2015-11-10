@@ -2,8 +2,8 @@
 import pandas as pd
 import numpy as np
 import time
-infile = "C:\Users\saura\Desktop\mlproject\data\\train.csv"
-outfile = "C:\Users\saura\Desktop\mlproject\data\\train_cleaned.csv"
+infile = "data\\train.csv"
+outfile = "data\\train_cleaned.csv"
 
 st = time.time()
 # read file
