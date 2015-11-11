@@ -40,5 +40,12 @@ print 'test df converted to numpy array'
 result = reg.predict(test_data)
 print 'predicted labels for test data'
 
-np.savetxt(outfile,result,delimiter=",")
+n = len(result);
+id = np.linspace(1, n, num=n, dtype='int32');
+
+df = pd.DataFrame({'ID':id, 'Expected':result});
+df = df.set_index('ID');
+print 'pandas dataframe with id created'
+
+df.to_csv(outfile,header=True);
 print 'saved to outfile'
