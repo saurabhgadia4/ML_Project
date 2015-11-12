@@ -1,10 +1,10 @@
-DATA_PATH = 'C:\Users\saura\Desktop\mlproject\data\\'
+DATA_PATH = 'C:\Users\saura\Desktop\ML_Project\data\\'
 TEST_FILE = 'test.csv'
 TRAIN_FILE = 'train.csv'
 TRAIN_PRECLEAN = 'train_cleaned.csv'
 TRIAL_FILE = 'trial1.csv'
-NORMALIZE_OUT = './norm_fmat.csv'
-LABEL_OUT = './label.csv'
+NORMALIZE_OUT = 'norm_fmat.csv'
+LABEL_OUT = 'label.csv'
 #To extract the #col from actual column name eg. 'Ref'->3 
 #input = u'Ref'
 #use: #col = COL_NAME2ID[ALIAS_NAME['Ref']]
