@@ -28,8 +28,45 @@ def pre_cleaning(infile, outfile):
     et = time.time()
     print 'Processed Time:',et-st
 
+def normalize_test(infile, fmat_out=param.NORMALIZE_TEST_OUT):
+    df = pd.read_csv(infile, index_col='Id')
+    print 'Read the CSV file'
+    #step 0 Remove columns minutes and label from the dataframe
+    df = df.drop(util.get_aname2rname('MP'),axis=1)
+    print df.columns
 
-def normalize(infile, fmat_out=param.NORMALIZE_OUT, label_out=param.LABEL_OUT):
+    #step 1 groupby wrt to Id and take their mean and then seperate the label column.
+    df = df.groupby(level='Id').mean()
+    print 'Done groupby mean'
+    # label_mat = df[util.get_aname2rname('EXP')].as_matrix()
+    # np.savetxt(label_out, label_mat, delimiter=',')
+    # df = df.drop(util.get_aname2rname('EXP'),axis=1)
+    # print df.columns
+
+    #step2 convert dataframe to numpy array
+    df_mat = df.as_matrix()
+
+    #step3 impute
+    imp = pr.Imputer(missing_values='NaN',strategy='mean')
+    temp = imp.fit(df_mat)
+    narray = imp.transform(df_mat)
+
+    print 'Done Imputing'
+    #Convert to unit variance and 0 mean
+    narray = pr.scale(narray)
+    print 'Done Scaling'
+
+    #write to csv file by converting to dataframe
+    np.savetxt(fmat_out, narray, delimiter=',')
+    print 'Done writing to CSV'
+
+
+# Appending Id column before nparray
+#np.insert(narray, 0, id_col, axis=1)    
+#id_col = np.arange(1.,len(narray)+1)
+
+
+def normalize_train(infile, fmat_out=param.NORMALIZE_OUT, label_out=param.LABEL_OUT):
     '''
         #takes the above csv after removal of void id's and normalizes it by imputing Nans.
         #infile: valid clean csv absolute path

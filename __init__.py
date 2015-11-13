@@ -9,4 +9,5 @@ import time
 from sklearn import preprocessing as pr
 
 if __name__=="__main__":
-  trojanClean.normalize(os.path.join(param.DATA_PATH, param.TRAIN_PRECLEAN))
+#    trojanClean.normalize(os.path.join(param.DATA_PATH, param.TRAIN_PRECLEAN))
+    trojanClean.normalize_test(os.path.join(param.DATA_PATH, param.TEST_FILE))

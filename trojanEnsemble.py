@@ -3,14 +3,14 @@ import numpy as np
 from sklearn import cross_validation as cv
 from sklearn import metrics as mt
 from sklearn.ensemble import RandomForestRegressor as rfr
+from sklearn.ensemble import ExtraTreesRegressor as etr
+from sklearn.ensemble import GradientBoostingRegressor as gbr
 import time
 
 TRAIN_SIZE = 10000
 
-def rf_regressor(train_x, train_y, valid_x, valid_y, ntrees=10):
-    print 'ntrees',ntrees
-    modelObj = rfr(n_estimators=ntrees, n_jobs=-1)
-    est = modelObj.fit(train_x, train_y)
+def rf_regressor(rf_model, train_x, train_y, valid_x, valid_y, generate_csv=False):
+    est = rf_model.fit(train_x, train_y)
     train_y_pred = est.predict(train_x)
     error = mt.mean_absolute_error(train_y, train_y_pred)
     print 'Train Error',error
@@ -23,8 +23,8 @@ if __name__=="__main__":
     print 'read narray.. size:%r'%(len(narray))
     nlabel = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\label.csv',delimiter=',')
     print 'read label'
-    train_x, test_x, train_y, test_y = cv.train_test_split(narray, nlabel, random_state = 42)
-    #ttrain_x, ex_x, ttrain_y, ex_y = cv.train_test_split(train_x, train_y, test_size=0.99)
+    train_x, test_x, train_y, test_y = cv.train_test_split(narray, nlabel, random_state = 42, test_size=0.2)
+    #ttrain_x, ex_x, ttrain_y, ex_y = cv.train_test_split(train_x, train_y, test_size=0.2)
     ttrain_x = train_x
     ttrain_y = train_y
     trees_array = [200]
@@ -39,7 +39,10 @@ if __name__=="__main__":
 
         for train_idx, test_idx in kf:
             print '\nfold: %r'%(fold)
-            vacc, tacc, est = rf_regressor(ttrain_x[train_idx], ttrain_y[train_idx], ttrain_x[test_idx], ttrain_y[test_idx], ntrees=ntrees)
+            #rf_model = rfr(n_estimators=ntrees, n_jobs=-1) Random forest regressor
+            #rf_model = etr(n_estimators=ntrees, n_jobs=3, bootstrap=False)
+            rf_model = gbr(n_estimators=ntrees, loss='lad')
+            vacc, tacc, est = rf_regressor(rf_model, ttrain_x[train_idx], ttrain_y[train_idx], ttrain_x[test_idx], ttrain_y[test_idx])
             valid_acc.append(vacc)
             train_acc.append(tacc)
             est_arr.append(est)
