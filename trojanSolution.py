@@ -22,7 +22,9 @@ def rf_regressor(rf_model, train_x, train_y, valid_x, valid_y):
     test_y_pred = est.predict(test_x)
     id_col = np.arange(1.,len(test_y_pred)+1, dtype=np.int)
     all_data = np.column_stack((id_col, test_y_pred))
-    np.savetxt('mytest_solution.csv', all_data, delimiter=',', header='Id,Expected')
+    np.savetxt('C:\Users\saura\Desktop\ML_Project\data\\mytest_solution.csv', all_data, delimiter=',', header='Id,Expected')
+    df = pd.read_csv('C:\Users\saura\Desktop\ML_Project\data\\mytest_solution.csv')
+    df.to_csv('C:\Users\saura\Desktop\ML_Project\\final_solution.csv', header=True, index=False)
 
 if __name__=="__main__":
     narray = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\norm_fmat.csv',delimiter=',')
@@ -30,7 +32,7 @@ if __name__=="__main__":
     nlabel = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\label.csv',delimiter=',')
     print 'read label'
     train_x, test_x, train_y, test_y = cv.train_test_split(narray, nlabel, random_state = 42, test_size=0.2)
-    rf_model = etr(n_estimators=200, n_jobs=-1, bootstrap=False)
+    rf_model = gbr(n_estimators=100, loss='lad')
     rf_regressor(rf_model, train_x, train_y, test_x, test_y)
 
     #200 0.99157639  19.635566   19.24871943     FALSE
