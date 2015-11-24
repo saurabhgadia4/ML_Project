@@ -40,77 +40,89 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], tes
     #removing the predictor column from the matrix
     u_test_x = u_test_x[:,:-1]
 
-    for exp in exp_thresh:
+    #for exp in exp_thresh:
+    exp = 25
+    fobj.write('\n\nExpected Threshold Limit: %r\n' % (exp))
+    #step 2 prning to required exppected threshold
+    c_train_x = train_x[(train_x[:,-1]<=exp)]
+    c_train_y = c_train_x[:,-1]
+    c_train_x = c_train_x[:,:-1]
 
-        fobj.write('\n\nExpected Threshold Limit: %r\n' % (exp))
-        #step 2 prning to required exppected threshold
-        c_train_x = train_x[(train_x[:,-1]<=exp)]
-        c_train_y = c_train_x[:,-1]
-        c_train_x = c_train_x[:,:-1]
+    #step1 split Train
+    ttrain_x, ttest_x, ttrain_y, ttest_y = cv.train_test_split(c_train_x, c_train_y, random_state = 32, test_size=test_size )
 
-        #step1 split Train
-        ttrain_x, ttest_x, ttrain_y, ttest_y = cv.train_test_split(c_train_x, c_train_y, random_state = 32, test_size=test_size )
+    
+    fobj.write('Total Number of Constrained test records: %r\n' % len(ttest_y))
+    fobj.write('Total Number of Unconstrained test records: %r\n' % len(u_test_y))
 
-        
-        fobj.write('Total Number of Constrained test records: %r\n' % len(ttest_y))
-        fobj.write('Total Number of Unconstrained test records: %r\n' % len(u_test_y))
+    fobj.write('Total Constrained Training Records: %r\n' % len(ttrain_y))
 
-        fobj.write('Total Constrained Training Records: %r\n' % len(ttrain_y))
+    print 'Fitting Model Measurements'
+    trees_array = [50]
 
-        print 'Fitting Model Measurements'
-        trees_array = [50]
+    kf = cv.KFold(len(ttrain_x), n_folds=5)
+    st_time = time.time()
 
-        kf = cv.KFold(len(ttrain_x), n_folds=5)
-        st_time = time.time()
+    l_rate = [0.1, 0.05, 0.02, 0.01]
+    max_depth = [4,6]
+    min_samples_leaf = [3, 5, 9, 17]
+    for rate in l_rate:
+        fobj.write('Learning Rate: %r' % (rate))
+        print 'Learning Rate: %r' % (rate)
+        for dpth in max_depth:
+            fobj.write('max _depth: %r' %(dpth))
+            print 'max _depth: %r' %(dpth)
+            for msl in min_samples_leaf:
+                fobj.write('min_samples_leaf: %r' %(msl))
+                print 'min_samples_leaf: %r' %(msl)
+                for ntrees in trees_array:
+                    valid_acc = []
+                    test_acc = []
+                    train_acc = []
+                    est_arr = []
+                    unconst_acc = []
+                    fold = 0
 
-        for ntrees in trees_array:
-            valid_acc = []
-            test_acc = []
-            train_acc = []
-            est_arr = []
-            unconst_acc = []
-            fold = 0
+                    for train_idx, test_idx in kf:
+                        fobj.write('\nfold: %r\n'%(fold))
+                        #rf_model = rfr(n_estimators=ntrees, n_jobs=-1) Random forest regressor
+                        #rf_model = etr(n_estimators=ntrees, n_jobs=3, bootstrap=False)
+                        rf_model = gbr(n_estimators=ntrees, loss='lad', learning_rate=rate, max_depth=dpth, min_samples_split=msl)
+                        vacc, tacc, est = rf_regressor(rf_model, ttrain_x[train_idx], ttrain_y[train_idx], ttrain_x[test_idx], ttrain_y[test_idx], f_selection=f_selection, n_features=n_features)
+                        valid_acc.append(vacc)
+                        train_acc.append(tacc)
+                        est_arr.append(est)
+                        fobj.write('Train Size:%r\n' % (len(train_idx)))
+                        fobj.write('Validation Size:%r\n' % (len(test_idx)))
+                        fobj.write('Validation Error: %r\n' % (vacc))
+                        fobj.write('Train Error: %r\n' % (tacc))
+                        fobj.write('Constrained Test data size:%r\n' % (len(ttest_x)))
+                        test_acc.append(mt.mean_absolute_error(ttest_y, est.predict(ttest_x)))
+                        fobj.write('Constrained Test Error for fold: %r\n' % (test_acc[-1]))
+                        unconst_acc.append(mt.mean_absolute_error(u_test_y, est.predict(u_test_x)))
+                        fobj.write('Complete test accuracy:%r\n' % (unconst_acc[-1]))
+                        fold+=1
+                        break
 
-            for train_idx, test_idx in kf:
-                fobj.write('\nfold: %r\n'%(fold))
-                #rf_model = rfr(n_estimators=ntrees, n_jobs=-1) Random forest regressor
-                #rf_model = etr(n_estimators=ntrees, n_jobs=3, bootstrap=False)
-                rf_model = gbr(n_estimators=ntrees, loss='lad')
-                vacc, tacc, est = rf_regressor(rf_model, ttrain_x[train_idx], ttrain_y[train_idx], ttrain_x[test_idx], ttrain_y[test_idx], f_selection=f_selection, n_features=n_features)
-                valid_acc.append(vacc)
-                train_acc.append(tacc)
-                est_arr.append(est)
-                fobj.write('Train Size:%r\n' % (len(train_idx)))
-                fobj.write('Validation Size:%r\n' % (len(test_idx)))
-                fobj.write('Validation Error: %r\n' % (vacc))
-                fobj.write('Train Error: %r\n' % (tacc))
-                fobj.write('Constrained Test data size:%r\n' % (len(ttest_x)))
-                test_acc.append(mt.mean_absolute_error(ttest_y, est.predict(ttest_x)))
-                fobj.write('Constrained Test Error for fold: %r\n' % (test_acc[-1]))
-                unconst_acc.append(mt.mean_absolute_error(u_test_y, est.predict(u_test_x)))
-                fobj.write('Complete test accuracy:%r\n' % (unconst_acc[-1]))
-                fold+=1
-                break
+                    et_time = time.time()
+                    fobj.write('..Statistics..\n')
+                    fobj.write('Expected Threshold Limit: %r\n' % (exp))
+                    fobj.write('Trees:%r\n' % ntrees)
+                    fobj.write('Train Average: %r\n' % (np.mean(train_acc)))
+                    fobj.write('Validation Average: %r\n' % (np.mean(valid_acc)))
+                    fobj.write('Constrained Test Average: %r\n' % (np.mean(test_acc)))
+                    fobj.write('Unconstrained Test Avg: %r\n' % (np.mean(unconst_acc)))
+                    fobj.write('Total Time Taken: %r mins\n' % ((et_time-st_time)/60))
 
-            et_time = time.time()
-            fobj.write('..Statistics..\n')
-            fobj.write('Expected Threshold Limit: %r\n' % (exp))
-            fobj.write('Trees:%r\n' % ntrees)
-            fobj.write('Train Average: %r\n' % (np.mean(train_acc)))
-            fobj.write('Validation Average: %r\n' % (np.mean(valid_acc)))
-            fobj.write('Constrained Test Average: %r\n' % (np.mean(test_acc)))
-            fobj.write('Unconstrained Test Avg: %r\n' % (np.mean(unconst_acc)))
-            fobj.write('Total Time Taken: %r mins\n' % ((et_time-st_time)/60))
-
-            #Print to console
-            print('..Statistics..\n')
-            print('Expected Threshold Limit: %r\n' % (exp))
-            print('Trees:%r\n' % ntrees)
-            print('Train Average: %r\n' % (np.mean(train_acc)))
-            print('Validation Average: %r\n' % (np.mean(valid_acc)))
-            print('Constrained Test Average: %r\n' % (np.mean(test_acc)))
-            print('Unconstrained Test Avg: %r\n' % (np.mean(unconst_acc)))
-            print('Total Time Taken: %r mins\n' % ((et_time-st_time)/60))
+                    #Print to console
+                    print('..Statistics..\n')
+                    print('Expected Threshold Limit: %r\n' % (exp))
+                    print('Trees:%r\n' % ntrees)
+                    print('Train Average: %r\n' % (np.mean(train_acc)))
+                    print('Validation Average: %r\n' % (np.mean(valid_acc)))
+                    print('Constrained Test Average: %r\n' % (np.mean(test_acc)))
+                    print('Unconstrained Test Avg: %r\n' % (np.mean(unconst_acc)))
+                    print('Total Time Taken: %r mins\n' % ((et_time-st_time)/60))
 
 def preprocess(infile, method='ORIGINAL', mp_transform=True, drop_list=[]):
     '''
