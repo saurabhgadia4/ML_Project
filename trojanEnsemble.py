@@ -19,15 +19,17 @@ def rf_regressor(rf_model, train_x, train_y, valid_x, valid_y, generate_csv=Fals
 
 
 if __name__=="__main__":
-    narray = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\norm_fmat.csv',delimiter=',')
+    narray = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\rho_gr_0_85_fmat.csv',delimiter=',')
+    #n_real = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\norm_fmat.csv',delimiter=',')
     print 'read narray.. size:%r'%(len(narray))
-    nlabel = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\label.csv',delimiter=',')
+    nlabel = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\rho_gr_0_85_label.csv',delimiter=',')
+    #label_real = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\label.csv',delimiter=',')
     print 'read label'
     train_x, test_x, train_y, test_y = cv.train_test_split(narray, nlabel, random_state = 42, test_size=0.2)
-    #ttrain_x, ex_x, ttrain_y, ex_y = cv.train_test_split(train_x, train_y, test_size=0.2)
-    ttrain_x = train_x
-    ttrain_y = train_y
-    trees_array = [200]
+    ttrain_x, ex_x, ttrain_y, ex_y = cv.train_test_split(train_x, train_y, test_size=0.5)
+    #ttrain_x = train_x
+    #ttrain_y = train_y
+    trees_array = [10,50,100,200]
     kf = cv.KFold(len(ttrain_x),n_folds=5)
     st_time = time.time()
     for ntrees in trees_array:

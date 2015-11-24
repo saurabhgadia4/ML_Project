@@ -1,4 +1,5 @@
 DATA_PATH = 'C:\Users\saura\Desktop\ML_Project\data\\'
+DATA_VIZ_PATH = 'C:\Users\saura\Desktop\ML_Project\data_viz\\'
 TEST_FILE = 'test.csv'
 TRAIN_FILE = 'train.csv'
 TRAIN_PRECLEAN = 'train_cleaned.csv'
@@ -41,4 +42,17 @@ COL_ID2NAME = {
        13:u'RhoHV_5x5_50th', 14:u'RhoHV_5x5_90th', 15:u'Zdr', 16:u'Zdr_5x5_10th',
        17:u'Zdr_5x5_50th', 18:u'Zdr_5x5_90th', 19:u'Kdp', 20:u'Kdp_5x5_10th',
        21:u'Kdp_5x5_50th', 22:u'Kdp_5x5_90th', 23:u'Expected'
+}
+
+PREPROCESS_MTH = {
+       'ORIGINAL':1,
+       'NORM':2
+}
+
+REGRESSOR = {
+       'RFOREST':1,
+       'EXTREES':2,
+       'GBM':3,
+       'LINEAR':4,
+       'MARSHALL':5
 }

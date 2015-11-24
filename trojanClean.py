@@ -28,6 +28,13 @@ def pre_cleaning(infile, outfile):
     et = time.time()
     print 'Processed Time:',et-st
 
+def label_to_csv(df, label_file):
+    label_mat = df[util.get_aname2rname('EXP')].as_matrix()
+    np.savetxt(label_file, label_mat, delimiter=',')
+    df = df.drop(util.get_aname2rname('EXP'),axis=1)
+    return df, label_mat
+
+
 def normalize_test(infile, fmat_out=param.NORMALIZE_TEST_OUT):
     df = pd.read_csv(infile, index_col='Id')
     print 'Read the CSV file'
@@ -38,10 +45,6 @@ def normalize_test(infile, fmat_out=param.NORMALIZE_TEST_OUT):
     #step 1 groupby wrt to Id and take their mean and then seperate the label column.
     df = df.groupby(level='Id').mean()
     print 'Done groupby mean'
-    # label_mat = df[util.get_aname2rname('EXP')].as_matrix()
-    # np.savetxt(label_out, label_mat, delimiter=',')
-    # df = df.drop(util.get_aname2rname('EXP'),axis=1)
-    # print df.columns
 
     #step2 convert dataframe to numpy array
     df_mat = df.as_matrix()
@@ -53,8 +56,8 @@ def normalize_test(infile, fmat_out=param.NORMALIZE_TEST_OUT):
 
     print 'Done Imputing'
     #Convert to unit variance and 0 mean
-    narray = pr.scale(narray)
-    print 'Done Scaling'
+    # narray = pr.scale(narray)
+    # print 'Done Scaling'
 
     #write to csv file by converting to dataframe
     np.savetxt(fmat_out, narray, delimiter=',')
@@ -66,7 +69,7 @@ def normalize_test(infile, fmat_out=param.NORMALIZE_TEST_OUT):
 #id_col = np.arange(1.,len(narray)+1)
 
 
-def normalize_train(infile, fmat_out=param.NORMALIZE_OUT, label_out=param.LABEL_OUT):
+def normalize_train(infile, fmat_file, label_file, mp_transform=False, drop_list=[]):
     '''
         #takes the above csv after removal of void id's and normalizes it by imputing Nans.
         #infile: valid clean csv absolute path
@@ -129,17 +132,27 @@ def normalize_train(infile, fmat_out=param.NORMALIZE_OUT, label_out=param.LABEL_
     '''
     df = pd.read_csv(infile, index_col='Id')
     print 'Read the CSV file'
-    #step 0 Remove columns minutes and label from the dataframe
-    df = df.drop(util.get_aname2rname('MP'),axis=1)
-    print df.columns
+
+    #drop all unwanted columns
+    df = util.drop_columns(df, drop_list)
+
+    # #step 0 Removing records having expected values above mentioned threshold
+    # if not complete:
+    #     df = df[(df.Expected<=exp_thresh)]
+    #     print 'Pruned the data with expected threshold: %r' % (exp_thresh)
+
+    #step 0.1 transform minute column
+    if mp_transform:
+        df = change_mp(df)
+        st = time.time()
+        print 'Changed the MP column - Time Req: %r' % ((time.time()-st)/60)
+        mp_file = infile.split('.')[0] + '_MP.csv'
+        df.to_csv(mp_file, header=True)
 
     #step 1 groupby wrt to Id and take their mean and then seperate the label column.
     df = df.groupby(level='Id').mean()
-    print 'Done groupby mean'
-    label_mat = df[util.get_aname2rname('EXP')].as_matrix()
-    np.savetxt(label_out, label_mat, delimiter=',')
-    df = df.drop(util.get_aname2rname('EXP'),axis=1)
-    print df.columns
+
+    df, l_mat = label_to_csv(df, label_file)
 
     #step2 convert dataframe to numpy array
     df_mat = df.as_matrix()
@@ -147,15 +160,55 @@ def normalize_train(infile, fmat_out=param.NORMALIZE_OUT, label_out=param.LABEL_
     #step3 impute
     imp = pr.Imputer(missing_values='NaN',strategy='mean')
     temp = imp.fit(df_mat)
-    narray = imp.transform(df_mat)
+    f_mat = imp.transform(df_mat)
 
     print 'Done Imputing'
     #Convert to unit variance and 0 mean
-    narray = pr.scale(narray)
+    f_mat = pr.scale(f_mat)
     print 'Done Scaling'
 
     #write to csv file by converting to dataframe
-    np.savetxt(fmat_out, narray, delimiter=',')
+    np.savetxt(fmat_file, f_mat, delimiter=',')
     print 'Done writing to CSV'
+    #x = np.loadtxt(fmat_file, delimiter=',')
+    #y = np.loadtxt(label_file, delimiter=',')
+    print 'size f_mat:%r' % (len(f_mat))
+    print 'size y:%r' % (len(l_mat))
+    comp_mat = np.column_stack((f_mat, l_mat))
+    return comp_mat
 
-    return narray, label_mat
+def cal_min_intv(minutes_past):
+    valid_time = np.zeros_like(minutes_past)
+    valid_time[0] = minutes_past.iloc[0]
+    for n in xrange(1, len(minutes_past)):
+        valid_time[n] = minutes_past.iloc[n] - minutes_past.iloc[n-1]
+    valid_time[-1] = valid_time[-1] + 60 - np.sum(valid_time)
+    #valid_time = valid_time / 60.0
+    return valid_time
+
+def min_transform(df):
+    df['minutes_past'] = cal_min_intv(df['minutes_past'])    
+    return df
+
+def change_mp(df):
+    df = df.groupby(level='Id').apply(min_transform)
+    df = df[np.isfinite(df['Ref'])]
+    return df
+
+
+def transform_orig(infile, fmat_file, label_file, exp_thresh=30):
+    df = pd.read_csv(infile,index_col='Id')
+    #step 0.1 Removing records having expected values above mentioned threshold
+    df = df[(df.Expected<=exp_thresh)]
+
+    #All dropping should be done before transforming as in transformation
+    #dropping columns should not have bias on valid data
+    df = change_mp(df)
+    df, l_mat = label_to_csv(df, label_file)
+
+    #Need to handle np.NaN values
+    f_mat = df.as_matrix()
+    np.savetxt(fmat_file, f_mat, delimiter=',')
+    return fmat, l_mat
+
+

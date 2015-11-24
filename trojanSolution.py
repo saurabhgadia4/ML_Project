@@ -27,9 +27,9 @@ def rf_regressor(rf_model, train_x, train_y, valid_x, valid_y):
     df.to_csv('C:\Users\saura\Desktop\ML_Project\\final_solution.csv', header=True, index=False)
 
 if __name__=="__main__":
-    narray = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\norm_fmat.csv',delimiter=',')
+    narray = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\rho_gr_0_85_fmat.csv',delimiter=',')
     print 'read narray.. size:%r'%(len(narray))
-    nlabel = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\label.csv',delimiter=',')
+    nlabel = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\rho_gr_0_85_label.csv',delimiter=',')
     print 'read label'
     train_x, test_x, train_y, test_y = cv.train_test_split(narray, nlabel, random_state = 42, test_size=0.2)
     rf_model = gbr(n_estimators=100, loss='lad')
@@ -37,3 +37,13 @@ if __name__=="__main__":
 
     #200 0.99157639  19.635566   19.24871943     FALSE
 
+
+#gBR results
+#n_estimators = 100
+# read narray.. size:731556
+# read label
+# Train Size:585244
+# Train Error 23.2042661418
+# Train Size:146312
+# valid Error:23.190855007768523
+# Test Size:717625
