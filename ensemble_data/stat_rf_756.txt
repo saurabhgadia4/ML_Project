@@ -1,9 +1,0 @@
-Total Number of records: 731556
-
-
-Expected Threshold Limit: 5
-Total Number of Constrained test records: 95248
-Total Number of Unconstrained test records: 146312
-Total Constrained Training Records: 380989
-
-fold: 0

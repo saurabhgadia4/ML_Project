@@ -7,7 +7,7 @@ import os
 def drop_columns(df, drop_list):
     for col in drop_list:
         print 'dropping column:%r' % col
-        df = df.drop(util.get_aname2rname(col),axis=1)
+        df = df.drop(get_aname2rname(col),axis=1)
     print df.columns
     return df
 

@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestRegressor as rfr
 from sklearn.ensemble import ExtraTreesRegressor as etr
 from sklearn.ensemble import GradientBoostingRegressor as gbr
 from sklearn.feature_selection import RFE
+from sklearn.grid_search import GridSearchCV
 #from sklearn.feature_selection import SelectFromModel
 import time
 import random
@@ -22,27 +23,6 @@ def rf_regressor(rf_model, train_x, train_y, valid_x, valid_y, generate_csv=Fals
     if f_selection:
         print "Feature Selection Enabled- feature count: %r" % (n_features)
         rf_model = RFE(rf_model, n_features, step=1)
-    importances = est.feature_importances_
-    
-    std = np.std([tree.feature_importances_ for tree in est.estimators_],
-                 axis=0)
-    indices = np.argsort(importances)[::-1]
-
-    # Print the feature ranking
-    print("Feature ranking:")
-
-    for f in range(train_x.shape[1]):
-        print("%d. feature %d (%f)" % (f + 1, indices[f], importances[indices[f]]))
-
-    # Plot the feature importances of the forest
-    plt.figure()
-    plt.title("Feature importances")
-    plt.bar(range(train_x.shape[1]), importances[indices],
-           color="r", yerr=std[indices], align="center")
-    plt.xticks(range(train_x.shape[1]), indices)
-    plt.xlim([-1, train_x.shape[1]])
-    plt.show()
-
 
     train_y_pred = est.predict(train_x)
     error = mt.mean_absolute_error(train_y, train_y_pred)
@@ -50,7 +30,7 @@ def rf_regressor(rf_model, train_x, train_y, valid_x, valid_y, generate_csv=Fals
     valid_y_pred = est.predict(valid_x)
     return mt.mean_absolute_error(valid_y, valid_y_pred), error, est
 
-def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[30], regression_mth=[], test_size=0.2, f_selection=False, n_features=3):
+def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], test_size=0.2, f_selection=False, n_features=3, reg_methods=[]):
     global fobj
     fobj.write('Total Number of records: %r\n' % (len(comp_mat)))
     
@@ -68,7 +48,6 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[30], regression_mth=[], tes
         c_train_y = c_train_x[:,-1]
         c_train_x = c_train_x[:,:-1]
 
-
         #step1 split Train
         ttrain_x, ttest_x, ttrain_y, ttest_y = cv.train_test_split(c_train_x, c_train_y, random_state = 32, test_size=test_size )
 
@@ -79,7 +58,7 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[30], regression_mth=[], tes
         fobj.write('Total Constrained Training Records: %r\n' % len(ttrain_y))
 
         print 'Fitting Model Measurements'
-        trees_array = [50,100]
+        trees_array = [50]
 
         kf = cv.KFold(len(ttrain_x), n_folds=5)
         st_time = time.time()
@@ -160,7 +139,8 @@ if __name__=="__main__":
     infile = 'ensemble_data\\train_cleaned_MP.csv'
     pps_mth = param.PREPROCESS_MTH['NORM']
 
-    exp_thresh = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70]
+    exp_thresh = [25]
+    #exp_thresh = [80, 90, 100, 110]
     drop_arr = [
                  u'REF_10', u'REF_50', u'REFC', u'REFC_10', u'REFC_50', u'REFC_90', u'RHO', u'RHO_10', u'RHO_50',
                  u'RHO_90', u'ZDR', u'ZDR_10', u'ZDR_50', u'ZDR_90', u'KDP', u'KDP_10', u'KDP_50', u'KDP_90'
@@ -169,9 +149,14 @@ if __name__=="__main__":
     stat_file = 'ensemble_data\\stat_rf_'+r_int+'.txt'
     fobj = open(stat_file, 'w')
     
-    comp_mat = preprocess(infile, pps_mth, drop_list=drop_arr)
+    comp_mat = preprocess(infile, pps_mth, drop_list=[])
     driver(comp_mat, pps_mth=pps_mth, exp_thresh=exp_thresh, f_selection=False, n_features=3)
     fobj.close()
+
+
+
+
+
 
 '''
 COL_ANAME2ID = {
