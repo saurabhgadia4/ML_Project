@@ -1,0 +1,995 @@
+Features Dropped: "[u'REF_10', u'REF_50', u'REFC', u'REFC_10', u'REFC_50', u'REFC_90', u'RHO', u'RHO_10', u'RHO_50', u'RHO_90', u'ZDR', u'ZDR_10', u'ZDR_50', u'ZDR_90', u'KDP', u'KDP_10', u'KDP_50', u'KDP_90']"Total Number of records: 731556
+
+
+Expected Threshold Limit: 35
+Total Number of Constrained test records: 113319
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 453272
+
+
+max _depth: None
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 0.18024550898127786
+Train Size:362617
+Validation Size:90655
+Validation Error: 1.8945835786910223
+Train Error: 0.18024550898127786
+Constrained Test data size:113319
+Constrained Test Error for fold: 1.8676764304583748
+Complete test accuracy:22.408466767382006
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 0.18024550898127786
+Validation Average: 1.8945835786910223
+Constrained Test Average: 1.8676764304583748
+Unconstrained Test Avg: 22.408466767382006
+Total Time Taken: 1.1516499996185303 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 0.4348136560206311
+Train Size:362617
+Validation Size:90655
+Validation Error: 1.9262326044978861
+Train Error: 0.4348136560206311
+Constrained Test data size:113319
+Constrained Test Error for fold: 1.9006362484622459
+Complete test accuracy:22.446159352739542
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 0.4348136560206311
+Validation Average: 1.9262326044978861
+Constrained Test Average: 1.9006362484622459
+Unconstrained Test Avg: 22.446159352739542
+Total Time Taken: 2.1953999996185303 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 0.87294286386514042
+Train Size:362617
+Validation Size:90655
+Validation Error: 2.0156134941514945
+Train Error: 0.87294286386514042
+Constrained Test data size:113319
+Constrained Test Error for fold: 1.9968053828684382
+Complete test accuracy:22.550125250217985
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 0.87294286386514042
+Validation Average: 2.0156134941514945
+Constrained Test Average: 1.9968053828684382
+Unconstrained Test Avg: 22.550125250217985
+Total Time Taken: 3.108883333206177 mins
+
+
+max _depth: 4
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.5078746440241351
+Train Size:362617
+Validation Size:90655
+Validation Error: 2.5223476003550256
+Train Error: 2.5078746440241351
+Constrained Test data size:113319
+Constrained Test Error for fold: 2.5092788426006956
+Complete test accuracy:23.075887090911106
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 2.5078746440241351
+Validation Average: 2.5223476003550256
+Constrained Test Average: 2.5092788426006956
+Unconstrained Test Avg: 23.075887090911106
+Total Time Taken: 3.2134166677792866 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.5098710072843806
+Train Size:362617
+Validation Size:90655
+Validation Error: 2.5247990457933542
+Train Error: 2.5098710072843806
+Constrained Test data size:113319
+Constrained Test Error for fold: 2.5108100812653529
+Complete test accuracy:23.078747594300641
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 2.5098710072843806
+Validation Average: 2.5247990457933542
+Constrained Test Average: 2.5108100812653529
+Unconstrained Test Avg: 23.078747594300641
+Total Time Taken: 3.3106666684150694 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.5077613484737631
+Train Size:362617
+Validation Size:90655
+Validation Error: 2.5234302842004235
+Train Error: 2.5077613484737631
+Constrained Test data size:113319
+Constrained Test Error for fold: 2.5094034902717754
+Complete test accuracy:23.076403389242937
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 2.5077613484737631
+Validation Average: 2.5234302842004235
+Constrained Test Average: 2.5094034902717754
+Unconstrained Test Avg: 23.076403389242937
+Total Time Taken: 3.408050000667572 mins
+
+
+max _depth: 6
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.4556490533000179
+Train Size:362617
+Validation Size:90655
+Validation Error: 2.4705506544807045
+Train Error: 2.4556490533000179
+Constrained Test data size:113319
+Constrained Test Error for fold: 2.4575569367331163
+Complete test accuracy:23.02307427293319
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 2.4556490533000179
+Validation Average: 2.4705506544807045
+Constrained Test Average: 2.4575569367331163
+Unconstrained Test Avg: 23.02307427293319
+Total Time Taken: 3.580850001176198 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.4585493984360154
+Train Size:362617
+Validation Size:90655
+Validation Error: 2.4738069769055744
+Train Error: 2.4585493984360154
+Constrained Test data size:113319
+Constrained Test Error for fold: 2.4604958578207445
+Complete test accuracy:23.026794204785674
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 2.4585493984360154
+Validation Average: 2.4738069769055744
+Constrained Test Average: 2.4604958578207445
+Unconstrained Test Avg: 23.026794204785674
+Total Time Taken: 3.7524666666984556 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.4522958806953543
+Train Size:362617
+Validation Size:90655
+Validation Error: 2.4669530470019501
+Train Error: 2.4522958806953543
+Constrained Test data size:113319
+Constrained Test Error for fold: 2.4536571692086584
+Complete test accuracy:23.019594063580548
+..Statistics..
+Expected Threshold Limit: 35
+Trees:50
+Train Average: 2.4522958806953543
+Validation Average: 2.4669530470019501
+Constrained Test Average: 2.4536571692086584
+Unconstrained Test Avg: 23.019594063580548
+Total Time Taken: 3.9220333337783813 mins
+
+
+Expected Threshold Limit: 40
+Total Number of Constrained test records: 113526
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 454104
+
+
+max _depth: None
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 0.18249512529460649
+Train Size:363283
+Validation Size:90821
+Validation Error: 1.9395368074586876
+Train Error: 0.18249512529460649
+Constrained Test data size:113526
+Constrained Test Error for fold: 1.9476111163508421
+Complete test accuracy:22.400559534838646
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 0.18249512529460649
+Validation Average: 1.9395368074586876
+Constrained Test Average: 1.9476111163508421
+Unconstrained Test Avg: 22.400559534838646
+Total Time Taken: 1.0625333309173584 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 0.44556214622745377
+Train Size:363283
+Validation Size:90821
+Validation Error: 1.9746830303701144
+Train Error: 0.44556214622745377
+Constrained Test data size:113526
+Constrained Test Error for fold: 1.9813418313550153
+Complete test accuracy:22.4445100691234
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 0.44556214622745377
+Validation Average: 1.9746830303701144
+Constrained Test Average: 1.9813418313550153
+Unconstrained Test Avg: 22.4445100691234
+Total Time Taken: 2.0943833311398823 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 0.89625469252348455
+Train Size:363283
+Validation Size:90821
+Validation Error: 2.0725070716904028
+Train Error: 0.89625469252348455
+Constrained Test data size:113526
+Constrained Test Error for fold: 2.0720275005324642
+Complete test accuracy:22.549166523884949
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 0.89625469252348455
+Validation Average: 2.0725070716904028
+Constrained Test Average: 2.0720275005324642
+Unconstrained Test Avg: 22.549166523884949
+Total Time Taken: 3.0271666646003723 mins
+
+
+max _depth: 4
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.5744100111766666
+Train Size:363283
+Validation Size:90821
+Validation Error: 2.5918753204954461
+Train Error: 2.5744100111766666
+Constrained Test data size:113526
+Constrained Test Error for fold: 2.5795503049090196
+Complete test accuracy:23.088853317878531
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 2.5744100111766666
+Validation Average: 2.5918753204954461
+Constrained Test Average: 2.5795503049090196
+Unconstrained Test Avg: 23.088853317878531
+Total Time Taken: 3.1656333327293398 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.587604006947823
+Train Size:363283
+Validation Size:90821
+Validation Error: 2.605386538351635
+Train Error: 2.587604006947823
+Constrained Test data size:113526
+Constrained Test Error for fold: 2.5929683452149552
+Complete test accuracy:23.101242359262063
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 2.587604006947823
+Validation Average: 2.605386538351635
+Constrained Test Average: 2.5929683452149552
+Unconstrained Test Avg: 23.101242359262063
+Total Time Taken: 3.2638499975204467 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.5697035328087177
+Train Size:363283
+Validation Size:90821
+Validation Error: 2.5877590800323618
+Train Error: 2.5697035328087177
+Constrained Test data size:113526
+Constrained Test Error for fold: 2.5753524255954505
+Complete test accuracy:23.084689700141105
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 2.5697035328087177
+Validation Average: 2.5877590800323618
+Constrained Test Average: 2.5753524255954505
+Unconstrained Test Avg: 23.084689700141105
+Total Time Taken: 3.3749333302179974 mins
+
+
+max _depth: 6
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.5288070515905656
+Train Size:363283
+Validation Size:90821
+Validation Error: 2.5473345326149799
+Train Error: 2.5288070515905656
+Constrained Test data size:113526
+Constrained Test Error for fold: 2.5347713696269332
+Complete test accuracy:23.042322308229291
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 2.5288070515905656
+Validation Average: 2.5473345326149799
+Constrained Test Average: 2.5347713696269332
+Unconstrained Test Avg: 23.042322308229291
+Total Time Taken: 3.5414666652679445 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.5239847267104052
+Train Size:363283
+Validation Size:90821
+Validation Error: 2.5425943230725121
+Train Error: 2.5239847267104052
+Constrained Test data size:113526
+Constrained Test Error for fold: 2.5301871922658545
+Complete test accuracy:23.03799410700562
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 2.5239847267104052
+Validation Average: 2.5425943230725121
+Constrained Test Average: 2.5301871922658545
+Unconstrained Test Avg: 23.03799410700562
+Total Time Taken: 3.7115833322207132 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.526355666206741
+Train Size:363283
+Validation Size:90821
+Validation Error: 2.5444678291827758
+Train Error: 2.526355666206741
+Constrained Test data size:113526
+Constrained Test Error for fold: 2.5323633179796263
+Complete test accuracy:23.040139847637409
+..Statistics..
+Expected Threshold Limit: 40
+Trees:50
+Train Average: 2.526355666206741
+Validation Average: 2.5444678291827758
+Constrained Test Average: 2.5323633179796263
+Unconstrained Test Avg: 23.040139847637409
+Total Time Taken: 3.882116667429606 mins
+
+
+Expected Threshold Limit: 45
+Total Number of Constrained test records: 113820
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 455277
+
+
+max _depth: None
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 0.19631242201665924
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.0703768649111249
+Train Error: 0.19631242201665924
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.0457273558389835
+Complete test accuracy:22.428702162279809
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 0.19631242201665924
+Validation Average: 2.0703768649111249
+Constrained Test Average: 2.0457273558389835
+Unconstrained Test Avg: 22.428702162279809
+Total Time Taken: 1.0800166686375936 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 0.47843261864659153
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.102459850090725
+Train Error: 0.47843261864659153
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.0834455102375511
+Complete test accuracy:22.46851441042757
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 0.47843261864659153
+Validation Average: 2.102459850090725
+Constrained Test Average: 2.0834455102375511
+Unconstrained Test Avg: 22.46851441042757
+Total Time Taken: 2.0949166655540465 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 0.9550325494097035
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.2018718233153347
+Train Error: 0.9550325494097035
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.1838105789594939
+Complete test accuracy:22.576291651796549
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 0.9550325494097035
+Validation Average: 2.2018718233153347
+Constrained Test Average: 2.1838105789594939
+Unconstrained Test Avg: 22.576291651796549
+Total Time Taken: 3.017650000254313 mins
+
+
+max _depth: 4
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.7087519753052476
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.7350720401119757
+Train Error: 2.7087519753052476
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.7294911603631524
+Complete test accuracy:23.130886465483997
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 2.7087519753052476
+Validation Average: 2.7350720401119757
+Constrained Test Average: 2.7294911603631524
+Unconstrained Test Avg: 23.130886465483997
+Total Time Taken: 3.1165833353996275 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.716734530676248
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.7430937676137819
+Train Error: 2.716734530676248
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.7375616203474196
+Complete test accuracy:23.138304186468403
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 2.716734530676248
+Validation Average: 2.7430937676137819
+Constrained Test Average: 2.7375616203474196
+Unconstrained Test Avg: 23.138304186468403
+Total Time Taken: 3.221050000190735 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.7143118888705122
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.741086174442938
+Train Error: 2.7143118888705122
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.7348785809838527
+Complete test accuracy:23.136489335760359
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 2.7143118888705122
+Validation Average: 2.741086174442938
+Constrained Test Average: 2.7348785809838527
+Unconstrained Test Avg: 23.136489335760359
+Total Time Taken: 3.3197499990463255 mins
+
+
+max _depth: 6
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.650650132885894
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.6793524250536991
+Train Error: 2.650650132885894
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.6716475853264718
+Complete test accuracy:23.073120777450548
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 2.650650132885894
+Validation Average: 2.6793524250536991
+Constrained Test Average: 2.6716475853264718
+Unconstrained Test Avg: 23.073120777450548
+Total Time Taken: 3.491449999809265 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.6567540602494062
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.6851892350637963
+Train Error: 2.6567540602494062
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.677577920958639
+Complete test accuracy:23.078544135512278
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 2.6567540602494062
+Validation Average: 2.6851892350637963
+Constrained Test Average: 2.677577920958639
+Unconstrained Test Avg: 23.078544135512278
+Total Time Taken: 3.656400001049042 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.6494226372769223
+Train Size:364221
+Validation Size:91056
+Validation Error: 2.6784156918803248
+Train Error: 2.6494226372769223
+Constrained Test data size:113820
+Constrained Test Error for fold: 2.6707137964978318
+Complete test accuracy:23.071391102380723
+..Statistics..
+Expected Threshold Limit: 45
+Trees:50
+Train Average: 2.6494226372769223
+Validation Average: 2.6784156918803248
+Constrained Test Average: 2.6707137964978318
+Unconstrained Test Avg: 23.071391102380723
+Total Time Taken: 3.8428000013033548 mins
+
+
+Expected Threshold Limit: 50
+Total Number of Constrained test records: 113893
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 455568
+
+
+max _depth: None
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 0.20235731719940486
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.0694746254360084
+Train Error: 0.20235731719940486
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.0626942951907759
+Complete test accuracy:22.437147930044059
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 0.20235731719940486
+Validation Average: 2.0694746254360084
+Constrained Test Average: 2.0626942951907759
+Unconstrained Test Avg: 22.437147930044059
+Total Time Taken: 1.0682500004768372 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 0.49152428676133997
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.1075397552870463
+Train Error: 0.49152428676133997
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.1015638095869926
+Complete test accuracy:22.477461028693241
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 0.49152428676133997
+Validation Average: 2.1075397552870463
+Constrained Test Average: 2.1015638095869926
+Unconstrained Test Avg: 22.477461028693241
+Total Time Taken: 2.096333332856496 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 0.97746787768003141
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.2099217745573849
+Train Error: 0.97746787768003141
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.2116452394403212
+Complete test accuracy:22.591463464424958
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 0.97746787768003141
+Validation Average: 2.2099217745573849
+Constrained Test Average: 2.2116452394403212
+Unconstrained Test Avg: 22.591463464424958
+Total Time Taken: 3.0367000023523967 mins
+
+
+max _depth: 4
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.7621095891353251
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.7601062210398126
+Train Error: 2.7621095891353251
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.7561475036978367
+Complete test accuracy:23.147564277965035
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 2.7621095891353251
+Validation Average: 2.7601062210398126
+Constrained Test Average: 2.7561475036978367
+Unconstrained Test Avg: 23.147564277965035
+Total Time Taken: 3.142050000031789 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.7563000212860942
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.7537419996553738
+Train Error: 2.7563000212860942
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.7495428187679867
+Complete test accuracy:23.141966300237247
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 2.7563000212860942
+Validation Average: 2.7537419996553738
+Constrained Test Average: 2.7495428187679867
+Unconstrained Test Avg: 23.141966300237247
+Total Time Taken: 3.2448833346366883 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.7612294669149442
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.758642810902515
+Train Error: 2.7612294669149442
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.7550365190517736
+Complete test accuracy:23.145982325132191
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 2.7612294669149442
+Validation Average: 2.758642810902515
+Constrained Test Average: 2.7550365190517736
+Unconstrained Test Avg: 23.145982325132191
+Total Time Taken: 3.3533833344777424 mins
+
+
+max _depth: 6
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.7077269092794967
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.7037407203757438
+Train Error: 2.7077269092794967
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.7023673796857342
+Complete test accuracy:23.093276154950576
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 2.7077269092794967
+Validation Average: 2.7037407203757438
+Constrained Test Average: 2.7023673796857342
+Unconstrained Test Avg: 23.093276154950576
+Total Time Taken: 3.5162500023841856 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.6984785020064219
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.694857760739795
+Train Error: 2.6984785020064219
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.6925908144615192
+Complete test accuracy:23.084744298486836
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 2.6984785020064219
+Validation Average: 2.694857760739795
+Constrained Test Average: 2.6925908144615192
+Unconstrained Test Avg: 23.084744298486836
+Total Time Taken: 3.6896999994913737 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.706546614554084
+Train Size:364454
+Validation Size:91114
+Validation Error: 2.7029362336446314
+Train Error: 2.706546614554084
+Constrained Test data size:113893
+Constrained Test Error for fold: 2.7008947961335275
+Complete test accuracy:23.092477053587508
+..Statistics..
+Expected Threshold Limit: 50
+Trees:50
+Train Average: 2.706546614554084
+Validation Average: 2.7029362336446314
+Constrained Test Average: 2.7008947961335275
+Unconstrained Test Avg: 23.092477053587508
+Total Time Taken: 3.8557833353678386 mins
+
+
+Expected Threshold Limit: 55
+Total Number of Constrained test records: 113969
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 455876
+
+
+max _depth: None
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 0.20599170640428802
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.0886976241982405
+Train Error: 0.20599170640428802
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.1088073113981638
+Complete test accuracy:22.426673358684642
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 0.20599170640428802
+Validation Average: 2.0886976241982405
+Constrained Test Average: 2.1088073113981638
+Unconstrained Test Avg: 22.426673358684642
+Total Time Taken: 1.050950002670288 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 0.49807478732950161
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.1240489115071308
+Train Error: 0.49807478732950161
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.1502722748002925
+Complete test accuracy:22.468663163314943
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 0.49807478732950161
+Validation Average: 2.1240489115071308
+Constrained Test Average: 2.1502722748002925
+Unconstrained Test Avg: 22.468663163314943
+Total Time Taken: 2.064050002892812 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 0.99256072055243172
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.2362358614269224
+Train Error: 0.99256072055243172
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.258297401661693
+Complete test accuracy:22.582320275346568
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 0.99256072055243172
+Validation Average: 2.2362358614269224
+Constrained Test Average: 2.258297401661693
+Unconstrained Test Avg: 22.582320275346568
+Total Time Taken: 2.9823333342870075 mins
+
+
+max _depth: 4
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.8051489959670004
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.7857269619152438
+Train Error: 2.8051489959670004
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.7972578253299893
+Complete test accuracy:23.156279378723728
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 2.8051489959670004
+Validation Average: 2.7857269619152438
+Constrained Test Average: 2.7972578253299893
+Unconstrained Test Avg: 23.156279378723728
+Total Time Taken: 3.083283332983653 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.8021779570560303
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.7832406754877446
+Train Error: 2.8021779570560303
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.7941366185423759
+Complete test accuracy:23.153691103144013
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 2.8021779570560303
+Validation Average: 2.7832406754877446
+Constrained Test Average: 2.7941366185423759
+Unconstrained Test Avg: 23.153691103144013
+Total Time Taken: 3.1881500005722048 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.813517105752942
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.79397107623954
+Train Error: 2.813517105752942
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.8051334327703796
+Complete test accuracy:23.164834781578563
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 2.813517105752942
+Validation Average: 2.79397107623954
+Constrained Test Average: 2.8051334327703796
+Unconstrained Test Avg: 23.164834781578563
+Total Time Taken: 3.2864500006039936 mins
+
+
+max _depth: 6
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 2.751639267375539
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.7324668377647279
+Train Error: 2.751639267375539
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.7457649811857099
+Complete test accuracy:23.103729545073882
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 2.751639267375539
+Validation Average: 2.7324668377647279
+Constrained Test Average: 2.7457649811857099
+Unconstrained Test Avg: 23.103729545073882
+Total Time Taken: 3.4575833360354107 mins
+
+min_samples_leaf: 3
+
+fold: 0
+Train Error: 2.7472907563259237
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.7279027505161997
+Train Error: 2.7472907563259237
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.7413924547358919
+Complete test accuracy:23.099354375471325
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 2.7472907563259237
+Validation Average: 2.7279027505161997
+Constrained Test Average: 2.7413924547358919
+Unconstrained Test Avg: 23.099354375471325
+Total Time Taken: 3.622000002861023 mins
+
+min_samples_leaf: 5
+
+fold: 0
+Train Error: 2.7518512100778842
+Train Size:364700
+Validation Size:91176
+Validation Error: 2.7332982058306787
+Train Error: 2.7518512100778842
+Constrained Test data size:113969
+Constrained Test Error for fold: 2.745713814851765
+Complete test accuracy:23.104319619745759
+..Statistics..
+Expected Threshold Limit: 55
+Trees:50
+Train Average: 2.7518512100778842
+Validation Average: 2.7332982058306787
+Constrained Test Average: 2.745713814851765
+Unconstrained Test Avg: 23.104319619745759
+Total Time Taken: 3.7928500016530355 mins
+
+
+Expected Threshold Limit: 60
+Total Number of Constrained test records: 114134
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 456535
+
+
+max _depth: None
+
+min_samples_leaf: 1
+
+fold: 0
+Train Error: 0.2134501403023393
+Train Size:365228
+Validation Size:91307
+Validation Error: 2.227136128055466
+Train Error: 0.2134501403023393
+Constrained Test data size:114134

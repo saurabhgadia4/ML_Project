@@ -1,4 +1,0 @@
-Total Number of records: 731556
-
-
-Expected Threshold Limit: 15

@@ -40,40 +40,38 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], tes
     #removing the predictor column from the matrix
     u_test_x = u_test_x[:,:-1]
 
-    #for exp in exp_thresh:
-    exp = 25
-    fobj.write('\n\nExpected Threshold Limit: %r\n' % (exp))
-    #step 2 prning to required exppected threshold
-    c_train_x = train_x[(train_x[:,-1]<=exp)]
-    c_train_y = c_train_x[:,-1]
-    c_train_x = c_train_x[:,:-1]
+    for exp in exp_thresh:
+        fobj.write('\n\nExpected Threshold Limit: %r\n' % (exp))
+        #step 2 prning to required exppected threshold
+        c_train_x = train_x[(train_x[:,-1]<=exp)]
+        c_train_y = c_train_x[:,-1]
+        c_train_x = c_train_x[:,:-1]
 
-    #step1 split Train
-    ttrain_x, ttest_x, ttrain_y, ttest_y = cv.train_test_split(c_train_x, c_train_y, random_state = 32, test_size=test_size )
+        #step1 split Train
+        ttrain_x, ttest_x, ttrain_y, ttest_y = cv.train_test_split(c_train_x, c_train_y, random_state = 32, test_size=test_size )
 
-    
-    fobj.write('Total Number of Constrained test records: %r\n' % len(ttest_y))
-    fobj.write('Total Number of Unconstrained test records: %r\n' % len(u_test_y))
+        
+        fobj.write('Total Number of Constrained test records: %r\n' % len(ttest_y))
+        fobj.write('Total Number of Unconstrained test records: %r\n' % len(u_test_y))
 
-    fobj.write('Total Constrained Training Records: %r\n' % len(ttrain_y))
+        fobj.write('Total Constrained Training Records: %r\n' % len(ttrain_y))
 
-    print 'Fitting Model Measurements'
-    trees_array = [50]
+        print 'Fitting Model Measurements'
+        trees_array = [100]
 
-    kf = cv.KFold(len(ttrain_x), n_folds=5)
-    st_time = time.time()
+        kf = cv.KFold(len(ttrain_x), n_folds=5)
+        st_time = time.time()
 
-    l_rate = [0.1, 0.05, 0.02, 0.01]
-    max_depth = [4,6]
-    min_samples_leaf = [3, 5, 9, 17]
-    for rate in l_rate:
-        fobj.write('Learning Rate: %r' % (rate))
-        print 'Learning Rate: %r' % (rate)
+        l_rate = [0.1, 0.05, 0.02, 0.01]
+        max_depth = [None]
+        min_samples_leaf = [1]
+
+
         for dpth in max_depth:
-            fobj.write('max _depth: %r' %(dpth))
+            fobj.write('\n\nmax _depth: %r\n' %(dpth))
             print 'max _depth: %r' %(dpth)
             for msl in min_samples_leaf:
-                fobj.write('min_samples_leaf: %r' %(msl))
+                fobj.write('\nmin_samples_leaf: %r\n' %(msl))
                 print 'min_samples_leaf: %r' %(msl)
                 for ntrees in trees_array:
                     valid_acc = []
@@ -87,7 +85,7 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], tes
                         fobj.write('\nfold: %r\n'%(fold))
                         #rf_model = rfr(n_estimators=ntrees, n_jobs=-1) Random forest regressor
                         #rf_model = etr(n_estimators=ntrees, n_jobs=3, bootstrap=False)
-                        rf_model = gbr(n_estimators=ntrees, loss='lad', learning_rate=rate, max_depth=dpth, min_samples_split=msl)
+                        rf_model = etr(n_estimators=ntrees, max_depth=dpth, min_samples_split=msl)
                         vacc, tacc, est = rf_regressor(rf_model, ttrain_x[train_idx], ttrain_y[train_idx], ttrain_x[test_idx], ttrain_y[test_idx], f_selection=f_selection, n_features=n_features)
                         valid_acc.append(vacc)
                         train_acc.append(tacc)
@@ -102,7 +100,7 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], tes
                         unconst_acc.append(mt.mean_absolute_error(u_test_y, est.predict(u_test_x)))
                         fobj.write('Complete test accuracy:%r\n' % (unconst_acc[-1]))
                         fold+=1
-                        break
+                        #break
 
                     et_time = time.time()
                     fobj.write('..Statistics..\n')
@@ -151,17 +149,18 @@ if __name__=="__main__":
     infile = 'ensemble_data\\train_cleaned_MP.csv'
     pps_mth = param.PREPROCESS_MTH['NORM']
 
-    exp_thresh = [25]
+    exp_thresh = [40]
     #exp_thresh = [80, 90, 100, 110]
     drop_arr = [
                  u'REF_10', u'REF_50', u'REFC', u'REFC_10', u'REFC_50', u'REFC_90', u'RHO', u'RHO_10', u'RHO_50',
                  u'RHO_90', u'ZDR', u'ZDR_10', u'ZDR_50', u'ZDR_90', u'KDP', u'KDP_10', u'KDP_50', u'KDP_90'
                 ]
     
-    stat_file = 'ensemble_data\\stat_rf_'+r_int+'.txt'
+    stat_file = 'ensemble_data\\stat_etr_'+r_int+'.txt'
     fobj = open(stat_file, 'w')
     
     comp_mat = preprocess(infile, pps_mth, drop_list=[])
+    fobj.write('Features Dropped: %r' % str(drop_arr))
     driver(comp_mat, pps_mth=pps_mth, exp_thresh=exp_thresh, f_selection=False, n_features=3)
     fobj.close()
 
