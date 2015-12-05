@@ -1,0 +1,28 @@
+Features Dropped: "[u'MP', u'REF_10', u'REF_50', u'REFC', u'REFC_10', u'REFC_50', u'REFC_90', u'RHO', u'RHO_10', u'RHO_50', u'RHO_90', u'ZDR', u'ZDR_10', u'ZDR_50', u'ZDR_90', u'KDP', u'KDP_10', u'KDP_50', u'KDP_90']"Total Number of records: 731556
+
+
+Expected Threshold Limit: 25
+Total Number of Constrained test records: 112121
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 448480
+
+
+Learning Rate: 0.3
+
+fold: 0
+Train Error: 1.8520520633434201
+Train Size:358784
+Validation Size:89696
+Validation Error: 1.8585426194478152
+Train Error: 1.8520520633434201
+Constrained Test data size:112121
+Constrained Test Error for fold: 1.8613257448920921
+Complete test accuracy:22.721027240314069
+..Statistics..
+Expected Threshold Limit: 25
+Trees:100
+Train Average: 1.8520520633434201
+Validation Average: 1.8585426194478152
+Constrained Test Average: 1.8613257448920921
+Unconstrained Test Avg: 22.721027240314069
+Total Time Taken: 1.7245500008265178 mins

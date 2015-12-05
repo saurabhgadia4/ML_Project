@@ -13,6 +13,7 @@ import time
 import random
 import trojanClean
 import trojanParam as param
+import trojanSolution as solution
 
 fobj = None
 
@@ -30,7 +31,7 @@ def rf_regressor(rf_model, train_x, train_y, valid_x, valid_y, generate_csv=Fals
     valid_y_pred = est.predict(valid_x)
     return mt.mean_absolute_error(valid_y, valid_y_pred), error, est
 
-def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], test_size=0.2, f_selection=False, n_features=3, reg_methods=[]):
+def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[40], regression_mth=[], test_size=0.2, f_selection=False, n_features=3, reg_methods=[]):
     global fobj
     fobj.write('Total Number of records: %r\n' % (len(comp_mat)))
     
@@ -100,7 +101,7 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], tes
                         unconst_acc.append(mt.mean_absolute_error(u_test_y, est.predict(u_test_x)))
                         fobj.write('Complete test accuracy:%r\n' % (unconst_acc[-1]))
                         fold+=1
-                        #break
+                        break
 
                     et_time = time.time()
                     fobj.write('..Statistics..\n')
@@ -121,6 +122,16 @@ def driver(comp_mat, pps_mth='ORIGINAL', exp_thresh=[25], regression_mth=[], tes
                     print('Constrained Test Average: %r\n' % (np.mean(test_acc)))
                     print('Unconstrained Test Avg: %r\n' % (np.mean(unconst_acc)))
                     print('Total Time Taken: %r mins\n' % ((et_time-st_time)/60))
+
+        print 'Generating Solution Result:'
+        test_x = np.loadtxt('C:\Users\saura\Desktop\ML_Project\data\\norm_test_fmat.csv',delimiter=',')
+        print 'Test Size:%r' % len(test_x)
+        test_y_pred = est.predict(test_x)
+        id_col = np.arange(1.,len(test_y_pred)+1, dtype=np.int)
+        all_data = np.column_stack((id_col, test_y_pred))
+        np.savetxt('C:\Users\saura\Desktop\ML_Project\ensemble_data\\mytest_solution.csv', all_data, delimiter=',', header='Id,Expected')
+        df = pd.read_csv('C:\Users\saura\Desktop\ML_Project\ensemble_data\\mytest_solution.csv')
+        df.to_csv('C:\Users\saura\Desktop\ML_Project\\ensemble_data\\final_solution.csv', header=True, index=False)
 
 def preprocess(infile, method='ORIGINAL', mp_transform=True, drop_list=[]):
     '''
@@ -159,7 +170,7 @@ if __name__=="__main__":
     stat_file = 'ensemble_data\\stat_etr_'+r_int+'.txt'
     fobj = open(stat_file, 'w')
     
-    comp_mat = preprocess(infile, pps_mth, drop_list=[])
+    comp_mat = preprocess(infile, pps_mth, drop_list=['MP'])
     fobj.write('Features Dropped: %r' % str(drop_arr))
     driver(comp_mat, pps_mth=pps_mth, exp_thresh=exp_thresh, f_selection=False, n_features=3)
     fobj.close()

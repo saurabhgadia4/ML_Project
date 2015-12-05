@@ -35,12 +35,12 @@ def label_to_csv(df, label_file):
     return df, label_mat
 
 
-def normalize_test(infile, fmat_out=param.NORMALIZE_TEST_OUT):
+def normalize_test(infile, fmat_out=param.NORMALIZE_TEST_OUT, drop_list=[]):
     df = pd.read_csv(infile, index_col='Id')
     print 'Read the CSV file'
     #step 0 Remove columns minutes and label from the dataframe
-    df = df.drop(util.get_aname2rname('MP'),axis=1)
-    print df.columns
+    #drop all unwanted columns
+    df = util.drop_columns(df, drop_list)
 
     #step 1 groupby wrt to Id and take their mean and then seperate the label column.
     df = df.groupby(level='Id').mean()

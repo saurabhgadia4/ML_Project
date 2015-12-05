@@ -1,8 +1,12 @@
-Total Number of records: 731556
+Features Dropped: '[]'Total Number of records: 731556
 
 
 Expected Threshold Limit: 25
 Total Number of Constrained test records: 112121
 Total Number of Unconstrained test records: 146312
 Total Constrained Training Records: 448480
+
+
 Learning Rate: 0.1
+
+fold: 0

@@ -1,0 +1,91 @@
+Features Dropped: '[]'Total Number of records: 731556
+
+
+Expected Threshold Limit: 25
+Total Number of Constrained test records: 112121
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 448480
+
+
+Learning Rate: 0.1
+
+fold: 0
+Train Error: 1.8178566850116904
+Train Size:358784
+Validation Size:89696
+Validation Error: 1.8254528367469289
+Train Error: 1.8178566850116904
+Constrained Test data size:112121
+Constrained Test Error for fold: 1.8274070514737615
+Complete test accuracy:22.690765075186714
+..Statistics..
+Expected Threshold Limit: 25
+Trees:100
+Train Average: 1.8178566850116904
+Validation Average: 1.8254528367469289
+Constrained Test Average: 1.8274070514737615
+Unconstrained Test Avg: 22.690765075186714
+Total Time Taken: 6.816750001907349 mins
+
+
+Learning Rate: 0.2
+
+fold: 0
+Train Error: 1.8043952465803428
+Train Size:358784
+Validation Size:89696
+Validation Error: 1.8177269697590963
+Train Error: 1.8043952465803428
+Constrained Test data size:112121
+Constrained Test Error for fold: 1.8208679021028589
+Complete test accuracy:22.679333008297547
+..Statistics..
+Expected Threshold Limit: 25
+Trees:100
+Train Average: 1.8043952465803428
+Validation Average: 1.8177269697590963
+Constrained Test Average: 1.8208679021028589
+Unconstrained Test Avg: 22.679333008297547
+Total Time Taken: 12.42016666730245 mins
+
+
+Learning Rate: 0.3
+
+fold: 0
+Train Error: 1.7977122840573307
+Train Size:358784
+Validation Size:89696
+Validation Error: 1.8153343777182764
+Train Error: 1.7977122840573307
+Constrained Test data size:112121
+Constrained Test Error for fold: 1.8190547390772587
+Complete test accuracy:22.675264317670202
+..Statistics..
+Expected Threshold Limit: 25
+Trees:100
+Train Average: 1.7977122840573307
+Validation Average: 1.8153343777182764
+Constrained Test Average: 1.8190547390772587
+Unconstrained Test Avg: 22.675264317670202
+Total Time Taken: 18.14805000225703 mins
+
+
+Learning Rate: 0.4
+
+fold: 0
+Train Error: 1.7959478444940982
+Train Size:358784
+Validation Size:89696
+Validation Error: 1.816052815921015
+Train Error: 1.7959478444940982
+Constrained Test data size:112121
+Constrained Test Error for fold: 1.8211675416967108
+Complete test accuracy:22.674007648071175
+..Statistics..
+Expected Threshold Limit: 25
+Trees:100
+Train Average: 1.7959478444940982
+Validation Average: 1.816052815921015
+Constrained Test Average: 1.8211675416967108
+Unconstrained Test Avg: 22.674007648071175
+Total Time Taken: 23.72203333377838 mins

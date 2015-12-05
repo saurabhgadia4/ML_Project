@@ -1,0 +1,47 @@
+trojanXTR.py:158: SyntaxWarning: name 'fobj' is assigned to before global declaration
+  global fobj
+Read the CSV file
+Exp = 40
+dropping column:'MP'
+Index([u'radardist_km', u'Ref', u'Ref_5x5_10th', u'Ref_5x5_50th',
+       u'Ref_5x5_90th', u'RefComposite', u'RefComposite_5x5_10th',
+       u'RefComposite_5x5_50th', u'RefComposite_5x5_90th', u'RhoHV',
+       u'RhoHV_5x5_10th', u'RhoHV_5x5_50th', u'RhoHV_5x5_90th', u'Zdr',
+       u'Zdr_5x5_10th', u'Zdr_5x5_50th', u'Zdr_5x5_90th', u'Kdp',
+       u'Kdp_5x5_10th', u'Kdp_5x5_50th', u'Kdp_5x5_90th', u'Expected'],
+      dtype='object')
+Done Imputing
+Done Scaling
+Done writing to CSV
+size f_mat:731556
+size y:731556
+PreProcessing Done
+Fitting Model Measurements
+max _depth: None
+min_samples_leaf: 1
+feature importance:  [ 0.05796883  0.07875762  0.06283751  0.08410406  0.09327682  0.06916123
+  0.05741309  0.07436915  0.07599383  0.02692944  0.02768845  0.02669046
+  0.03147463  0.02786399  0.02793112  0.02829966  0.03360719  0.02825805
+  0.02955126  0.02711123  0.03071237]
+..Statistics..
+
+Expected Threshold Limit: 40
+
+Trees:100
+
+Train Average: 0.16323006284681402
+
+Validation Average: 1.825607483814256
+
+Constrained Test Average: 1.834395881222405
+
+Unconstrained Test Avg: 22.291737248702145
+
+Total Time Taken: 8.125983333587646 mins
+
+Generating Solution Result:
+Test Size:717625
+
+[Anaconda2] C:\Users\saura\Desktop\ML_Project>
+
+  Kaggle score: 24.82157 Pretty Bad

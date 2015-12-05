@@ -1,0 +1,29 @@
+Features Dropped: "['MP']"Total Number of records: 731556
+
+Submission Score: 23.94679
+
+Expected Threshold Limit: 25
+Total Number of Constrained test records: 112121
+Total Number of Unconstrained test records: 146312
+Total Constrained Training Records: 448480
+
+
+Learning Rate: 0.3
+
+fold: 0
+Train Error: 1.7984875413171963
+Train Size:358784
+Validation Size:89696
+Validation Error: 1.8154527628532844
+Train Error: 1.7984875413171963
+Constrained Test data size:112121
+Constrained Test Error for fold: 1.8188597992706605
+Complete test accuracy:22.673787340134169
+..Statistics..
+Expected Threshold Limit: 25
+Trees:100
+Train Average: 1.7984875413171963
+Validation Average: 1.8154527628532844
+Constrained Test Average: 1.8188597992706605
+Unconstrained Test Avg: 22.673787340134169
+Total Time Taken: 5.863333332538605 mins

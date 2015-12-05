@@ -1,0 +1,108 @@
+trojanTunedGBR.py:146: SyntaxWarning: name 'fobj' is assigned to before global declaration
+  global fobj
+Read the CSV file
+Index([u'minutes_past', u'radardist_km', u'Ref', u'Ref_5x5_10th',
+       u'Ref_5x5_50th', u'Ref_5x5_90th', u'RefComposite',
+       u'RefComposite_5x5_10th', u'RefComposite_5x5_50th',
+       u'RefComposite_5x5_90th', u'RhoHV', u'RhoHV_5x5_10th',
+       u'RhoHV_5x5_50th', u'RhoHV_5x5_90th', u'Zdr', u'Zdr_5x5_10th',
+       u'Zdr_5x5_50th', u'Zdr_5x5_90th', u'Kdp', u'Kdp_5x5_10th',
+       u'Kdp_5x5_50th', u'Kdp_5x5_90th', u'Expected'],
+      dtype='object')
+Done Imputing
+Done Scaling
+Done writing to CSV
+size f_mat:731556
+size y:731556
+PreProcessing Done
+Fitting Model Measurements
+
+fold: 0
+
+feature importance:  [ 0.02911391  0.11893643  0.38684325  0.02432715  0.03747256  0.06228495
+  0.01821155  0.02329085  0.01393155  0.09538214  0.0114825   0.01847331
+  0.01205687  0.01377616  0.01402289  0.01441332  0.02019386  0.02305854
+  0.00711613  0.03145792  0.01158707  0.01256711]
+Train Size:358784
+
+Validation Error: 1.817469877395034
+
+Constrained Test Error for fold: 1.8203863608649078
+
+Complete test accuracy:22.67897879392704
+
+
+fold: 1
+
+feature importance:  [ 0.04459416  0.14257402  0.11164546  0.02489097  0.03808286  0.06395413
+  0.20908972  0.02586233  0.01658099  0.0436808   0.01064164  0.01650335
+  0.02503333  0.0180214   0.00996627  0.01652794  0.03733271  0.02117183
+  0.01031366  0.01218618  0.0136864   0.08765982]
+Train Size:358784
+
+Validation Error: 1.8230334787619513
+
+Constrained Test Error for fold: 1.8204088801023715
+
+Complete test accuracy:22.674661545596468
+
+
+fold: 2
+
+feature importance:  [ 0.03825616  0.16910987  0.08048563  0.02695047  0.04099184  0.34084702
+  0.01954477  0.02521384  0.01033747  0.06413466  0.00991527  0.02050414
+  0.01462798  0.01554117  0.01000232  0.01282322  0.02490481  0.02632161
+  0.0090655   0.01435096  0.01366038  0.01241093]
+Train Size:358784
+
+Validation Error: 1.8344538058733675
+
+Constrained Test Error for fold: 1.8210660105247636
+
+Complete test accuracy:22.679555119682053
+
+
+fold: 3
+
+feature importance:  [ 0.08301327  0.10747192  0.29742499  0.03091104  0.03707596  0.06397577
+  0.0162684   0.02760953  0.02139204  0.10483912  0.01197411  0.01632085
+  0.01573804  0.0194726   0.01151623  0.01566151  0.0522609   0.01954192
+  0.00844763  0.01256051  0.01213769  0.01438599]
+Train Size:358784
+
+Validation Error: 1.8088782372995569
+
+Constrained Test Error for fold: 1.8207355226663513
+
+Complete test accuracy:22.676734075706307
+
+
+fold: 4
+
+feature importance:  [ 0.04816822  0.11631368  0.36840071  0.02334043  0.06368502  0.05652694
+  0.01924231  0.02993696  0.01807015  0.09541365  0.00919586  0.01268464
+  0.01327699  0.01173658  0.01126898  0.01133448  0.02623312  0.01585245
+  0.0081114   0.01996248  0.01068027  0.01056467]
+Train Size:358784
+
+Validation Error: 1.8269232931204411
+
+Constrained Test Error for fold: 1.8210155416535818
+
+Complete test accuracy:22.678270599837678
+
+..Statistics..
+
+Expected Threshold Limit: 25
+
+Trees:100
+
+Train Average: 1.8016556360955072
+
+Validation Average: 1.8221517384900703
+
+Constrained Test Average: 1.8207224631623951
+
+Unconstrained Test Avg: 22.677640026949909
+
+Total Time Taken: 30.848683333396913 mins

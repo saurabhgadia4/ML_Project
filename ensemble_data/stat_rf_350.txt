@@ -5,7 +5,11 @@ Expected Threshold Limit: 25
 Total Number of Constrained test records: 112121
 Total Number of Unconstrained test records: 146312
 Total Constrained Training Records: 448480
-Learning Rate: 0.1max _depth: 4min_samples_leaf: 3
+Learning Rate: 0.1
+
+max _depth: 4
+min_samples_leaf: 3
+
 fold: 0
 Train Error: 1.8594513405020587
 Train Size:358784
@@ -23,6 +27,7 @@ Validation Average: 1.8572772211505937
 Constrained Test Average: 1.8574106357259341
 Unconstrained Test Avg: 22.728991552753964
 Total Time Taken: 1.8744333346684774 mins
+
 min_samples_leaf: 5
 fold: 0
 Train Error: 1.8594513408178852
@@ -41,6 +46,7 @@ Validation Average: 1.8572772215716955
 Constrained Test Average: 1.8574106359202869
 Unconstrained Test Avg: 22.72899155281354
 Total Time Taken: 3.6422666668891908 mins
+
 min_samples_leaf: 9
 fold: 0
 Train Error: 1.8594513408178852
@@ -59,6 +65,7 @@ Validation Average: 1.8572772215716955
 Constrained Test Average: 1.8574106359202869
 Unconstrained Test Avg: 22.72899155281354
 Total Time Taken: 5.411416669686635 mins
+
 min_samples_leaf: 17
 fold: 0
 Train Error: 1.8594513406682835
@@ -77,7 +84,11 @@ Validation Average: 1.8572772213722262
 Constrained Test Average: 1.8574106358282247
 Unconstrained Test Avg: 22.72899155278532
 Total Time Taken: 7.191033335526784 mins
-max _depth: 6min_samples_leaf: 3
+
+
+max _depth: 6
+min_samples_leaf: 3
+
 fold: 0
 Train Error: 1.8285704176610489
 Train Size:358784
@@ -95,6 +106,7 @@ Validation Average: 1.8322817754741811
 Constrained Test Average: 1.8343329239855473
 Unconstrained Test Avg: 22.701465923610982
 Total Time Taken: 30.025383333365124 mins
+
 min_samples_leaf: 5
 fold: 0
 Train Error: 1.830150020007882
@@ -113,6 +125,7 @@ Validation Average: 1.8336303621053454
 Constrained Test Average: 1.8355182589406995
 Unconstrained Test Avg: 22.703028658388607
 Total Time Taken: 33.41238333384196 mins
+
 min_samples_leaf: 9
 fold: 0
 Train Error: 1.8302070426058292
@@ -131,6 +144,7 @@ Validation Average: 1.8337099532103742
 Constrained Test Average: 1.8354879769593528
 Unconstrained Test Avg: 22.703265812008834
 Total Time Taken: 36.796250001589456 mins
+
 min_samples_leaf: 17
 fold: 0
 Train Error: 1.8302427958641756
@@ -149,7 +163,12 @@ Validation Average: 1.8332410702521538
 Constrained Test Average: 1.8352478714251712
 Unconstrained Test Avg: 22.70237856129885
 Total Time Taken: 40.15188333590825 mins
-Learning Rate: 0.05max _depth: 4min_samples_leaf: 3
+
+Learning Rate: 0.05
+
+max _depth: 4
+min_samples_leaf: 3
+
 fold: 0
 Train Error: 1.8743140903289472
 Train Size:358784
@@ -167,6 +186,7 @@ Validation Average: 1.8717930352518386
 Constrained Test Average: 1.8706954812581871
 Unconstrained Test Avg: 22.748588197031836
 Total Time Taken: 42.02151666879654 mins
+
 min_samples_leaf: 5
 fold: 0
 Train Error: 1.8743140903289472
@@ -185,6 +205,7 @@ Validation Average: 1.8717930352518386
 Constrained Test Average: 1.8706954812581871
 Unconstrained Test Avg: 22.748588197031836
 Total Time Taken: 43.88181666930517 mins
+
 min_samples_leaf: 9
 fold: 0
 Train Error: 1.8743140903289472
@@ -203,6 +224,7 @@ Validation Average: 1.8717930352518386
 Constrained Test Average: 1.8706954812581871
 Unconstrained Test Avg: 22.748588197031836
 Total Time Taken: 45.71955000162124 mins
+
 min_samples_leaf: 17
 fold: 0
 Train Error: 1.8743140903289472
@@ -221,7 +243,10 @@ Validation Average: 1.8717930352518386
 Constrained Test Average: 1.8706954812581871
 Unconstrained Test Avg: 22.748588197031836
 Total Time Taken: 47.5594833334287 mins
-max _depth: 6min_samples_leaf: 3
+
+max _depth: 6
+min_samples_leaf: 3
+
 fold: 0
 Train Error: 1.8477931786058137
 Train Size:358784
@@ -239,6 +264,7 @@ Validation Average: 1.849673042351144
 Constrained Test Average: 1.8493475376244328
 Unconstrained Test Avg: 22.723023410189015
 Total Time Taken: 51.13328333298365 mins
+
 min_samples_leaf: 5
 fold: 0
 Train Error: 1.847266784894918
@@ -257,6 +283,7 @@ Validation Average: 1.8492146833083529
 Constrained Test Average: 1.8489142459381698
 Unconstrained Test Avg: 22.722470442787944
 Total Time Taken: 54.693200000127156 mins
+
 min_samples_leaf: 9
 fold: 0
 Train Error: 1.8478853739310017
@@ -275,6 +302,7 @@ Validation Average: 1.8496228133874542
 Constrained Test Average: 1.8491149078164963
 Unconstrained Test Avg: 22.7226752780231
 Total Time Taken: 58.24088333447774 mins
+
 min_samples_leaf: 17
 fold: 0
 Train Error: 1.8473266908608341
@@ -293,7 +321,12 @@ Validation Average: 1.8492745755629942
 Constrained Test Average: 1.8490062913368301
 Unconstrained Test Avg: 22.722564808016184
 Total Time Taken: 61.791416668891905 mins
-Learning Rate: 0.02max _depth: 4min_samples_leaf: 3
+
+Learning Rate: 0.02
+
+max _depth: 4
+
+min_samples_leaf: 3
 fold: 0
 Train Error: 1.927803281639076
 Train Size:358784
@@ -311,6 +344,7 @@ Validation Average: 1.9257119458763228
 Constrained Test Average: 1.9217044776549999
 Unconstrained Test Avg: 22.809631902964728
 Total Time Taken: 63.66931666930517 mins
+
 min_samples_leaf: 5
 fold: 0
 Train Error: 1.927803281639076
