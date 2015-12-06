@@ -1,0 +1,32 @@
+Total Number of records: 504190
+
+
+Expected Threshold Limit: 25
+Total Number of Constrained test records: 79213
+Total Number of Unconstrained test records: 100838
+Total Constrained Training Records: 316850
+
+
+Learning Rate: 0.3
+
+fold: 0
+Train Error: 1.8257084896489422
+Train Size:253480
+Validation Size:63370
+Validation Error: 1.8435533600337908
+Train Error: 1.8257084896489422
+Constrained Test data size:79213
+Constrained Test Error for fold: 1.8477873236370015
+Complete test accuracy:2.3807075405974549
+
+fold: 1
+Train Error: 1.8292952317885676
+Train Size:253480
+Validation Size:63370
+Validation Error: 1.8207132968625779
+Train Error: 1.8292952317885676
+Constrained Test data size:79213
+Constrained Test Error for fold: 1.8466967013973872
+Complete test accuracy:2.3784304795968523
+
+fold: 2

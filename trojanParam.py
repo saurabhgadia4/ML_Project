@@ -7,6 +7,49 @@ TRIAL_FILE = 'trial1.csv'
 NORMALIZE_OUT = 'norm_train_fmat.csv'
 NORMALIZE_TEST_OUT = 'norm_test_fmat.csv'
 LABEL_OUT = 'label.csv'
+MP_RES = 'MP_RES'
+CURRENT_FOLDER='final\\train_test_with_var_stg2_GXR'
+MP_TRAIN_FILE = "mp_result.csv"
+MP_TEST_FILE = "mp_test_res.csv"
+FINAL_TRAIN_INFILE = 'train_cleaned.csv'
+FINAL_TEST_INFILE = 'test.csv'
+
+FINAL_TEST_FMAT = 'test_fmat.csv'
+FINAL_TEST_OUT = 'kaggle_np.csv'
+FINAL_TEST_OUT_1 = 'kaggle_submission.csv'
+
+RHO_INFILE = 'rho_gr_0_85_pre_clean.csv'
+FINAL_RHO_INFILE = 'rho_gr_0_85_pre_clean.csv'
+LABEL_FILE = 'train_cleaned_y.csv'
+TRAIN_1_FINAL_FILE = 'ens_train_1.csv'
+TRAIN_2_FINAL_FILE = 'ens_train_2.csv'
+TEST_FINAL_FILE = 'ens_test.csv'
+
+EXP_THRESHOLD = {
+                     'GBM':30,
+                     'XTR':40,
+                     'RF':25
+}
+
+REG_PARAM = {
+                    'GBM':{
+                            'n_estimators':100,
+                            'max_depth':6,
+                            'learning_rate':0.3,
+                            'loss':'lad'
+
+                    } ,
+                    'RF':{
+                            'n_estimators':500,
+                            'n_jobs':2 
+                    },
+                    'XTR':{
+                            'n_estimators':100,
+                            'n_jobs':2
+
+                    }
+}
+
 #To extract the #col from actual column name eg. 'Ref'->3 
 #input = u'Ref'
 #use: #col = COL_NAME2ID[ALIAS_NAME['Ref']]

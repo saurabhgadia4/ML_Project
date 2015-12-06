@@ -13,9 +13,9 @@ import numpy as np
 import sys
 
 # change the location of the downloaded test file as necessary.
-infile="final\\train_cleaned.csv"
+infile="train_cleaned.csv"
 #infile="kaggle/sample.csv"
-outfile="final\\mp_result.csv"
+outfile="train_result.csv"
 
 # Make sure you are using 64-bit python.
 if sys.maxsize < 2**32:
@@ -52,7 +52,7 @@ def marshall_palmer(ref, minutes_past):
 def myfunc(hour):
     #rowid = hour['Id'].iloc[0]
     # sort hour by minutes_past
-    hour = hour.sort_values('minutes_past', ascending=True)
+    hour = hour.sort('minutes_past', ascending=True)
     est = marshall_palmer(hour['Ref'], hour['minutes_past'])
     hour['P_exp'] = est
     return hour
