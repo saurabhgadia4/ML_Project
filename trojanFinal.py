@@ -40,35 +40,26 @@ def split_data(comp_mat, test_size=0.2, train2_size=0.5):
 
 if __name__=="__main__":
     r_int = str(random.randint(1,10000))
-    sname = 'log\\'+ '100_var_stg2_'+ r_int
+    sname = '100_ank_f_var_stg2_'+ r_int
     stat_file = os.path.join(param.CURRENT_FOLDER, sname)
     fobj = open(stat_file, 'w')
     
-    # mp_train_mat = FinalClean.get_marshall_result(os.path.join(param.CURRENT_FOLDER, param.MP_TRAIN_FILE))
-    # mp_test_mat = FinalClean.get_marshall_result(os.path.join(param.CURRENT_FOLDER, param.MP_TEST_FILE))
-    # drop_list = [u'MP']
-    # '''
-    # drop_list = [
-    #              u'MP', u'REF_10', u'REF_50', u'REFC', u'REFC_10', u'REFC_50', u'REFC_90', u'RHO_10',
-    #               u'RHO_50', u'RHO_90', u'ZDR', u'ZDR_10', u'ZDR_50', u'ZDR_90', u'KDP', u'KDP_10', u'KDP_50', u'KDP_90'
-    #             ]
-    # '''
-    # train_comp_mat, test_comp_mat = FinalClean.normalize(os.path.join(param.CURRENT_FOLDER, param.FINAL_TRAIN_INFILE), os.path.join(param.CURRENT_FOLDER, param.FINAL_TEST_INFILE), mp_train_mat=mp_train_mat, mp_test_mat=mp_test_mat, drop_list=drop_list, add_variance=False)
-    # split_data(train_comp_mat)
-    # train_1_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, param.TRAIN_1_FINAL_FILE), delimiter=',')
-    # train_2_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, param.TRAIN_2_FINAL_FILE), delimiter=',')
-    # test_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, param.TEST_FINAL_FILE), delimiter=',')
-    # orig_test = np.loadtxt(os.path.join(param.CURRENT_FOLDER, 'test_final_test_norm_wmp_fmat.csv'), delimiter=',')
+    mp_train_mat = FinalClean.get_marshall_result(os.path.join(param.CURRENT_FOLDER, param.MP_TRAIN_FILE))
+    mp_test_mat = FinalClean.get_marshall_result(os.path.join(param.CURRENT_FOLDER, param.MP_TEST_FILE))
+    drop_list = [u'MP']
+    '''
+    drop_list = [
+                 u'MP', u'REF_10', u'REF_50', u'REFC', u'REFC_10', u'REFC_50', u'REFC_90', u'RHO_10',
+                  u'RHO_50', u'RHO_90', u'ZDR', u'ZDR_10', u'ZDR_50', u'ZDR_90', u'KDP', u'KDP_10', u'KDP_50', u'KDP_90'
+                ]
+    '''
+    train_comp_mat, test_comp_mat = FinalClean.normalize(os.path.join(param.CURRENT_FOLDER, param.FINAL_TRAIN_INFILE), os.path.join(param.CURRENT_FOLDER, param.FINAL_TEST_INFILE), mp_train_mat=mp_train_mat, mp_test_mat=mp_test_mat, drop_list=drop_list, add_variance=False)
+    split_data(train_comp_mat)
+    train_1_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, param.TRAIN_1_FINAL_FILE), delimiter=',')
+    train_2_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, param.TRAIN_2_FINAL_FILE), delimiter=',')
+    test_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, param.TEST_FINAL_FILE), delimiter=',')
+    orig_test = np.loadtxt(os.path.join(param.CURRENT_FOLDER, 'test_final_test_norm_wmp_fmat.csv'), delimiter=',')
     
-    # FinalEnsemble.gen_ensemble(train_1_x, train_2_x, test_x, orig_test, fobj)
+    FinalEnsemble.gen_ensemble(train_1_x, train_2_x, test_x, orig_test, fobj)
 
     FinalEnsemble.train_ensemble(fobj)
-
-
-
-
-
-
-    # train_comp_x = np.loadtxt('final\\train_test\\train_cleaned_final_train_norm_wmp_fmat.csv', delimiter=',')
-    # train_comp_y = np.loadtxt('final\\train_test\\train_cleaned_final_train_y.csv', delimiter=',')
-    # train_com_x = np.column_stack((train_comp_x, train_comp_y))

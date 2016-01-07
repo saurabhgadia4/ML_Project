@@ -8,6 +8,8 @@ from sklearn.ensemble import ExtraTreesRegressor as etr
 from sklearn.ensemble import GradientBoostingRegressor as gbr
 from sklearn.feature_selection import RFE
 from sklearn.grid_search import GridSearchCV
+import copy
+import itertools
 #from sklearn.feature_selection import SelectFromModel
 import time
 import os
@@ -31,55 +33,231 @@ def train_ensemble(fobj, train_2_x=None, hold_x=None, sub_test=None):
     sub_test_name = 'Submission.csv'
     if train_2_x==None:
         train_2_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, ens_train2_name), delimiter=',')
-        test_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, ens_test_name), delimiter=',')
-        orig_test = np.loadtxt(os.path.join(param.CURRENT_FOLDER, 'Submission.csv'), delimiter=',')
+        hold_x = np.loadtxt(os.path.join(param.CURRENT_FOLDER, ens_test_name), delimiter=',')
+        sub_test = np.loadtxt(os.path.join(param.CURRENT_FOLDER, 'Submission.csv'), delimiter=',')
     
-    train_x = train_2_x[:,:-1] 
-    test_x = train_2_x[:,-1]
 
-    stg2_GBR(train_2_x, test_x, hold_x, sub_test)
+    #stg2_GBR(fobj, train_2_x, hold_x, sub_test, ntrees=100)
+    #stg2_GBR(fobj, train_2_x, hold_x, sub_test, ntrees=200)
+    # barr = [22,23,24,25,26]
+    # for e in barr:
+    #     arr = copy.deepcopy(barr)
+    #     arr.remove(e)
+    # barr = [22,23,24]
+    # iobj = itertools.combinations(barr, 3)
+    # for c in iobj:
+    #     arr = list(c)
+    arr = [22, 23, 24]
+    stg2_GBR_P(fobj, train_2_x, hold_x, sub_test, arr, 700)
+    stg2_GBR_P(fobj, train_2_x, hold_x, sub_test, arr, 800)
+    stg2_GBR_P(fobj, train_2_x, hold_x, sub_test, arr, 900)
+    # stg2_XTR(fobj, train_2_x, hold_x, sub_test, ntrees=5)
+    # stg2_XTR_P(fobj, train_2_x, hold_x, sub_test, ntrees=5)
+    # stg2_XTR(fobj, train_2_x, hold_x, sub_test, ntrees=200)
+    # stg2_XTR_P(fobj, train_2_x, hold_x, sub_test, ntrees=200)
+    # stg2_XTR_P(fobj, train_2_x, hold_x, sub_test, ntrees=500)
+    # stg2_XTR_P(fobj, train_2_x, hold_x, sub_test, ntrees=1000)
+
+def stg2_XTR(fobj, train_x, hold_x, sub_test, ntrees=100):
+    ntrees = ntrees
+    e = 40
+    njobs=2
+    r = 0.3
+
+    arr = [0,1,2,21,22,23,24,25,26]
 
 
-
-def stg2_GBR(train_x, train_y, hold_x, sub_test):
-    ntrees=5
-    exp = [20, 30]
-    rate = [0.1, 0.3]
-    hold_test_x = hold_x[:,:-1]
+    hold_test_x = hold_x[:,arr]
     hold_test_y = hold_x[:,-1]
+    sub_test = sub_test[:,arr]
+
+    fobj.write('Trees: %r'%ntrees)
     
-    for e in exp:
-        print 'Stage 2: Exp Threshold - %r' % e
-        fobj.write('Stage 2: Exp Threshold - %r\n'%e)
-        c_train = train_x[(train_x[:,-1]<=exp)]
-        c_train_y = c_train[:,-1]
-        c_train_x = c_train[:,:-1]
-        for r in rate:
-            kaggle_file = 'Kaggle_GBR_e'+str(e)+'_r'+str(r)+'.csv'
-            df_kaggle_file = 'Kaggle_df_GBR_e'+str(e)+'_r'+str(r)+'.csv'
-            print 'Stage 2: Rate - %r' % r
-            fobj.write('GBR exp: %r rate: %r'%(e,r))
-            rf_model = gbr(n_estimators=ntrees, loss='lad', learning_rate=r, max_depth=6)
-            est = rf_model.fit(c_train_x, c_train_y)
+
+    print 'Stage 2: Exp Threshold - %r' % e
+    fobj.write('Stage 2: Exp Threshold - %r\n'%e)
+    c_train = train_x[(train_x[:,-1]<=e)]
+    c_arr = [0,1,2,21,22,23,24,25,26,27]
+
+    c_train = c_train[:,c_arr]
+    c_train_y = c_train[:,-1]
+    c_train_x = c_train[:,:-1]
+
+    kaggle_file = 'Kaggle_XTR_Ankit_e'+str(e)+'_r'+str(r)+'_t_'+str(ntrees)+str(len(arr)) +'.csv'
+    df_kaggle_file = 'Kaggle_df_XTR_Ankit_e'+str(e)+'_r'+str(r)+'_t_'+str(ntrees)+str(len(arr))+ '.csv'
+    print 'Stage 2: Rate - %r' % r
+    fobj.write('XTR exp: %r rate: %r'%(e,r))
+    rf_model = etr(n_estimators=ntrees, n_jobs=njobs)
+    est = rf_model.fit(c_train_x, c_train_y)
             
-            train_y_pred = est.predict(c_train_x)
-            error = mt.mean_absolute_error(c_train_y, train_y_pred)
-            print 'GBR Train Error: %r\n' % (error)
-            fobj.write('GBR Train-2 Error: %r\n' % (error))
+    train_y_pred = est.predict(c_train_x)
+    error = mt.mean_absolute_error(c_train_y, train_y_pred)
+    print 'XTR Train Error: %r\n' % (error)
+    fobj.write('XTR Train-2 Error: %r\n' % (error))
 
-            train_y_pred = est.predict(hold_test_x)
-            error = mt.mean_absolute_error(hold_test_y, train_y_pred)
-            print 'GBR 20 percent Hold Error: %r\n' % (error)
-            fobj.write('GBR 20 percent Hold Error: %r\n' % (error))
+    train_y_pred = est.predict(hold_test_x)
+    error = mt.mean_absolute_error(hold_test_y, train_y_pred)
+    print 'XTR 20 percent Hold Error: %r\n' % (error)
+    fobj.write('XTR 20 percent Hold Error: %r\n' % (error))
 
 
-            print 'Test Size:%r' % len(sub_test)
-            test_y_pred = est.predict(sub_test)
-            id_col = np.arange(1.,len(test_y_pred)+1, dtype=np.int)
-            all_data = np.column_stack((id_col, test_y_pred))
-            np.savetxt(os.path.join(param.CURRENT_FOLDER, kaggle_file), all_data, delimiter=',', header='Id,Expected')
-            df = pd.read_csv(os.path.join(param.CURRENT_FOLDER, kaggle_file))
-            df.to_csv(os.path.join(param.CURRENT_FOLDER, df_kaggle_file), header=True, index=False)
+    print 'Test Size:%r' % len(sub_test)
+    test_y_pred = est.predict(sub_test)
+    id_col = np.arange(1.,len(test_y_pred)+1, dtype=np.int)
+    all_data = np.column_stack((id_col, test_y_pred))
+    np.savetxt(os.path.join(param.CURRENT_FOLDER, kaggle_file), all_data, delimiter=',', header='Id,Expected')
+    df = pd.read_csv(os.path.join(param.CURRENT_FOLDER, kaggle_file))
+    df.to_csv(os.path.join(param.CURRENT_FOLDER, df_kaggle_file), header=True, index=False)
+
+def stg2_XTR_P(fobj, train_x, hold_x, sub_test, ntrees=100):
+    ntrees=ntrees
+    e = 40
+    njobs=2
+    r = 0.3
+
+    arr = [22,23,24,25,26]
+
+    #for e in b_arr:
+    hold_test_x = hold_x[:,arr]
+    hold_test_y = hold_x[:,-1]
+    sub_test = sub_test[:,arr]
+    fobj.write('Trees: %r'%ntrees)
+    
+    
+    print 'Stage 2: Exp Threshold - %r' % e
+    fobj.write('Stage 2: Exp Threshold - %r\n'%e)
+    c_train = train_x[(train_x[:,-1]<=e)]
+    c_train_y = c_train[:,-1]
+    
+    c_train_x = c_train[:,arr]
+
+
+    kaggle_file = 'Kaggle_XTR_P_e'+str(e)+'_r'+str(r)+'_t_'+str(ntrees)+str(arr)+'.csv'
+    df_kaggle_file = 'Kaggle_df_XTR_P_e'+str(e)+'_r_'+str(r)+'_t_'+str(ntrees)+str(arr)+'.csv'
+    print 'Stage 2: Rate - %r' % r
+    fobj.write('XTR_P exp: %r rate: %r'%(e,r))
+    rf_model = gbr(n_estimators=ntrees, loss='lad', learning_rate=r, max_depth=6)
+    est = rf_model.fit(c_train_x, c_train_y)
+    
+    train_y_pred = est.predict(c_train_x)
+    error = mt.mean_absolute_error(c_train_y, train_y_pred)
+    print 'XTR_P Train Error: %r\n' % (error)
+    fobj.write('XTR_P Train-2 Error: %r\n' % (error))
+
+    train_y_pred = est.predict(hold_test_x)
+    error = mt.mean_absolute_error(hold_test_y, train_y_pred)
+    print 'XTR_P 20 percent Hold Error: %r\n' % (error)
+    fobj.write('XTR_P 20 percent Hold Error: %r\n' % (error))
+
+
+    print 'Test Size:%r' % len(sub_test)
+    test_y_pred = est.predict(sub_test)
+    id_col = np.arange(1.,len(test_y_pred)+1, dtype=np.int)
+    all_data = np.column_stack((id_col, test_y_pred))
+    np.savetxt(os.path.join(param.CURRENT_FOLDER, kaggle_file), all_data, delimiter=',', header='Id,Expected')
+    df = pd.read_csv(os.path.join(param.CURRENT_FOLDER, kaggle_file))
+    df.to_csv(os.path.join(param.CURRENT_FOLDER, df_kaggle_file), header=True, index=False)
+
+
+def stg2_GBR_P(fobj, train_x, hold_x, sub_test, arr, trees):
+    ntrees=trees
+    e = 30
+    r = 0.3
+
+    
+
+    hold_test_x = hold_x[:,arr]
+    hold_test_y = hold_x[:,-1]
+    sub_test = sub_test[:,arr]
+    fobj.write('Trees: %r'%ntrees)
+    
+    
+    print 'Stage 2: Exp Threshold - %r' % e
+    print 'arr content:%r'%str(arr)
+    fobj.write('arr content: %r\n'%str(arr))
+    fobj.write('Stage 2: Exp Threshold - %r\n'%e)
+    c_train = train_x[(train_x[:,-1]<=e)]
+    c_train_y = c_train[:,-1]
+    c_train_x = c_train[:,arr]
+
+
+    kaggle_file = 'Kaggle_GBR_P_e'+str(e)+'_r'+str(r)+'_t_'+str(ntrees)+str(arr)+'.csv'
+    df_kaggle_file = 'Kaggle_df_GBR_P_e'+str(e)+'_r_'+str(r)+'_t_'+str(ntrees)+str(arr)+'.csv'
+    print 'Stage 2: Rate - %r' % r
+    fobj.write('GBR_P exp: %r rate: %r'%(e,r))
+    rf_model = gbr(n_estimators=ntrees, loss='lad', learning_rate=r, max_depth=6)
+    est = rf_model.fit(c_train_x, c_train_y)
+    
+    train_y_pred = est.predict(c_train_x)
+    error = mt.mean_absolute_error(c_train_y, train_y_pred)
+    print 'GBR_P Train Error: %r\n' % (error)
+    fobj.write('GBR_P Train-2 Error: %r\n' % (error))
+
+    train_y_pred = est.predict(hold_test_x)
+    error = mt.mean_absolute_error(hold_test_y, train_y_pred)
+    print 'GBR_P 20 percent Hold Error: %r\n' % (error)
+    fobj.write('GBR_P 20 percent Hold Error: %r\n' % (error))
+
+
+    print 'Test Size:%r' % len(sub_test)
+    test_y_pred = est.predict(sub_test)
+    id_col = np.arange(1.,len(test_y_pred)+1, dtype=np.int)
+    all_data = np.column_stack((id_col, test_y_pred))
+    np.savetxt(os.path.join(param.CURRENT_FOLDER, kaggle_file), all_data, delimiter=',', header='Id,Expected')
+    df = pd.read_csv(os.path.join(param.CURRENT_FOLDER, kaggle_file))
+    df.to_csv(os.path.join(param.CURRENT_FOLDER, df_kaggle_file), header=True, index=False)
+
+
+
+def stg2_GBR(fobj, train_x, hold_x, sub_test, ntrees=100):
+    ntrees = ntrees
+    e = 30
+    r = 0.3
+
+    arr = [0,1,2,21,22,23,24,25,26]
+
+
+    hold_test_x = hold_x[:,arr]
+    hold_test_y = hold_x[:,-1]
+    sub_test = sub_test[:,arr]
+
+    fobj.write('Trees: %r'%ntrees)
+    
+
+    print 'Stage 2: Exp Threshold - %r' % e
+    fobj.write('Stage 2: Exp Threshold - %r\n'%e)
+    c_train = train_x[(train_x[:,-1]<=e)]
+    c_arr = [0,1,2,21,22,23,24,25,26,27]
+
+    c_train = c_train[:,c_arr]
+    c_train_y = c_train[:,-1]
+    c_train_x = c_train[:,:-1]
+
+    kaggle_file = 'Kaggle_GBR_Ankit_e'+str(e)+'_r'+str(r)+'_t_'+str(ntrees)+str(len(arr)) +'.csv'
+    df_kaggle_file = 'Kaggle_df_GBR_Ankit_e'+str(e)+'_r'+str(r)+'_t_'+str(ntrees)+str(len(arr))+ '.csv'
+    print 'Stage 2: Rate - %r' % r
+    fobj.write('GBR exp: %r rate: %r'%(e,r))
+    rf_model = gbr(n_estimators=ntrees, loss='lad', learning_rate=r, max_depth=6)
+    est = rf_model.fit(c_train_x, c_train_y)
+            
+    train_y_pred = est.predict(c_train_x)
+    error = mt.mean_absolute_error(c_train_y, train_y_pred)
+    print 'GBR Train Error: %r\n' % (error)
+    fobj.write('GBR Train-2 Error: %r\n' % (error))
+
+    train_y_pred = est.predict(hold_test_x)
+    error = mt.mean_absolute_error(hold_test_y, train_y_pred)
+    print 'GBR 20 percent Hold Error: %r\n' % (error)
+    fobj.write('GBR 20 percent Hold Error: %r\n' % (error))
+
+
+    print 'Test Size:%r' % len(sub_test)
+    test_y_pred = est.predict(sub_test)
+    id_col = np.arange(1.,len(test_y_pred)+1, dtype=np.int)
+    all_data = np.column_stack((id_col, test_y_pred))
+    np.savetxt(os.path.join(param.CURRENT_FOLDER, kaggle_file), all_data, delimiter=',', header='Id,Expected')
+    df = pd.read_csv(os.path.join(param.CURRENT_FOLDER, kaggle_file))
+    df.to_csv(os.path.join(param.CURRENT_FOLDER, df_kaggle_file), header=True, index=False)
 
 
 def gen_ensemble(train_1_x, train_2_x, hold_out, sub_test, fobj):

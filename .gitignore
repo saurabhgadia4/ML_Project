@@ -63,3 +63,4 @@ data/
 data_viz/
 Submission2/
 *.csv
+*.pyc
